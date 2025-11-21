@@ -94,11 +94,22 @@ h3 {
 }
 
 .logo {
-  font-family: var(--font-graffiti);
-  font-size: 1.5rem;
-  color: var(--color-accent);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  text-shadow: 0 0 10px var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.8));
+  transform: scale(1.05);
 }
 
 .nav-menu {
