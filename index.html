@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lokos Levente - Creative Portfolio">
+  <title>Lokos Levente - Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bebas+Neue&family=Rubik+Mono+One&family=Racing+Sans+One&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#home" class="logo">LOKOS</a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1 class="hero-title neon-glow">
+          LOKOS<br/>LEVENTE
+        </h1>
+        <div class="hero-subtitle">
+          CREATIVE / DEVELOPER / DESIGNER
+        </div>
+        <div class="accent-line"></div>
+        <p class="hero-text">
+          Building digital experiences with style, edge, and creativity
+        </p>
+        <a href="#work" class="btn">VIEW MY WORK</a>
+      </div>
+      <div class="hero-decoration"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">ABOUT ME</h2>
+        <div class="accent-line"></div>
+
+        <div class="about-grid">
+          <div class="about-col">
+            <h3 class="about-heading">WHO I AM</h3>
+            <p class="about-text">
+              I'm a creative developer and designer with a passion for street culture,
+              skateboarding, and bold visual aesthetics. I blend technical expertise
+              with artistic vision to create unique digital experiences.
+            </p>
+            <p class="about-text">
+              Whether it's web development, graphic design, or creative projects,
+              I bring an unconventional approach that stands out from the crowd.
+            </p>
+          </div>
+
+          <div class="about-col">
+            <h3 class="about-heading about-heading-alt">SKILLS & EXPERTISE</h3>
+            <ul class="skills-list">
+              <li><span class="bullet">▸</span> WEB DEVELOPMENT</li>
+              <li><span class="bullet">▸</span> GRAPHIC DESIGN</li>
+              <li><span class="bullet">▸</span> UI/UX DESIGN</li>
+              <li><span class="bullet">▸</span> CREATIVE DIRECTION</li>
+              <li><span class="bullet">▸</span> BRAND IDENTITY</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work/Projects Section -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2 class="section-title section-title-accent">SELECTED WORK</h2>
+        <div class="accent-line"></div>
+
+        <div class="projects-grid">
+          <!-- Project Card 1 -->
+          <div class="card">
+            <div class="project-image project-image-1">
+              PROJECT 01
+            </div>
+            <h3 class="project-title">PROJECT NAME</h3>
+            <p class="project-description">
+              Description of your awesome project. This could be a website,
+              design work, or any creative endeavor you want to showcase.
+            </p>
+            <a href="#" class="btn btn-small">VIEW PROJECT</a>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div class="card">
+            <div class="project-image project-image-2">
+              PROJECT 02
+            </div>
+            <h3 class="project-title project-title-alt">PROJECT NAME</h3>
+            <p class="project-description">
+              Another amazing project that showcases your skills and creativity.
+              Add details about what makes this project special.
+            </p>
+            <a href="#" class="btn btn-small">VIEW PROJECT</a>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div class="card">
+            <div class="project-image project-image-3">
+              PROJECT 03
+            </div>
+            <h3 class="project-title project-title-warning">PROJECT NAME</h3>
+            <p class="project-description">
+              A third project to round out your portfolio. Show variety in your
+              work and demonstrate the range of your capabilities.
+            </p>
+            <a href="#" class="btn btn-small">VIEW PROJECT</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact-container">
+        <h2 class="section-title section-title-contact">LET'S WORK TOGETHER</h2>
+        <div class="accent-line accent-line-center"></div>
+
+        <p class="contact-intro">
+          Got a project in mind? Want to collaborate? Drop me a message and let's create something amazing.
+        </p>
+
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-input" placeholder="YOUR NAME" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="YOUR EMAIL" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-input" rows="6" placeholder="YOUR MESSAGE" required></textarea>
+          </div>
+          <button type="submit" class="btn">SEND MESSAGE</button>
+        </form>
+
+        <div class="social-links">
+          <a href="mailto:your.email@example.com" class="social-link">EMAIL</a>
+          <a href="#" class="social-link">INSTAGRAM</a>
+          <a href="#" class="social-link">GITHUB</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 LOKOS LEVENTE. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
