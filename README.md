@@ -8,22 +8,6 @@ A modern, edgy portfolio website built with Astro, featuring a graffiti/skate/vi
 - Node.js 18+ installed
 - npm or yarn
 
-### Installation
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
 ## 🎨 Design Theme
 
 This site features a bold, street-inspired design with:
@@ -59,11 +43,6 @@ Google Fonts used:
 
 This site is configured for GitHub Pages and will deploy to:
 **lokoslevente.com**
-
-To deploy:
-1. Push to your main branch
-2. Enable GitHub Pages in repo settings
-3. Site will be live at your custom domain
 
 ## 📦 Project Structure
 
