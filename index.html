@@ -23,11 +23,12 @@
         <span></span>
       </button>
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
-        <li><a href="#work" class="nav-link">Work</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="#hobbies" class="nav-link" data-i18n="nav.hobbies">Hobbies</a></li>
+        <li><a href="#work" class="nav-link" data-i18n="nav.work">Work</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+        <li><button class="lang-toggle" id="lang-toggle">HU</button></li>
       </ul>
     </div>
   </nav>
@@ -38,45 +39,44 @@
         <h1 class="hero-title neon-glow">
           LOKOS<br/>LEVENTE
         </h1>
-        <div class="hero-subtitle">
-          CREATIVE / DEVELOPER / DESIGNER
+        <div class="hero-subtitle" data-i18n="hero.subtitle">
+          DEVELOPER / STUDENT / PROBLEM SOLVER
         </div>
         <div class="accent-line"></div>
-        <p class="hero-text">
-          Building digital experiences with style, edge, and creativity
+        <p class="hero-text" data-i18n="hero.text">
+          CS student who likes building things — from websites to low-level programs
         </p>
-        <a href="#work" class="btn">VIEW MY WORK</a>
+        <a href="#work" class="btn" data-i18n="hero.button">VIEW MY WORK</a>
       </div>
       <div class="hero-decoration"></div>
     </section>
 
     <section id="about" class="section section-alt">
       <div class="container">
-        <h2 class="section-title">ABOUT ME</h2>
+        <h2 class="section-title" data-i18n="about.title">ABOUT ME</h2>
         <div class="accent-line"></div>
 
         <div class="about-grid">
           <div class="about-col">
-            <h3 class="about-heading">WHO I AM</h3>
-            <p class="about-text">
-              I'm a creative developer and designer with a passion for street culture,
-              skateboarding, and bold visual aesthetics. I blend technical expertise
-              with artistic vision to create unique digital experiences.
+            <h3 class="about-heading" data-i18n="about.who">WHO I AM</h3>
+            <p class="about-text" data-i18n="about.text1">
+              I'm a Computer Science student at the University of Pécs, studying Programming Informatics.
+              I enjoy working across the full stack — frontend, backend, and everything in between.
             </p>
-            <p class="about-text">
-              Whether it's web development, graphic design, or creative projects,
-              I bring an unconventional approach that stands out from the crowd.
+            <p class="about-text" data-i18n="about.text2">
+              I like understanding how things work under the hood, whether that's a web app or
+              a program running in DOSBox. I also serve as a student government representative.
             </p>
           </div>
 
           <div class="about-col">
-            <h3 class="about-heading about-heading-alt">SKILLS & EXPERTISE</h3>
+            <h3 class="about-heading about-heading-alt" data-i18n="about.skills_title">SKILLS & EXPERTISE</h3>
             <ul class="skills-list">
-              <li><span class="bullet">▸</span> WEB DEVELOPMENT</li>
-              <li><span class="bullet">▸</span> GRAPHIC DESIGN</li>
-              <li><span class="bullet">▸</span> UI/UX DESIGN</li>
-              <li><span class="bullet">▸</span> CREATIVE DIRECTION</li>
-              <li><span class="bullet">▸</span> BRAND IDENTITY</li>
+              <li><span class="bullet">▸</span> <span data-i18n="about.skill1">WEB DEVELOPMENT</span></li>
+              <li><span class="bullet">▸</span> <span data-i18n="about.skill2">BACKEND / API</span></li>
+              <li><span class="bullet">▸</span> <span data-i18n="about.skill3">LOW-LEVEL PROGRAMMING</span></li>
+              <li><span class="bullet">▸</span> <span data-i18n="about.skill4">DATABASES</span></li>
+              <li><span class="bullet">▸</span> <span data-i18n="about.skill5">LINUX / SYSADMIN</span></li>
             </ul>
           </div>
         </div>
@@ -85,48 +85,44 @@
 
     <section id="hobbies" class="section hobbies-section">
       <div class="container">
-        <h2 class="section-title section-title-hobbies">WHEN I'M NOT CODING</h2>
+        <h2 class="section-title section-title-hobbies" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
         <div class="accent-line"></div>
 
         <div class="hobbies-grid">
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">☕</div>
-            <h3 class="hobby-title">COFFEE</h3>
-            <p class="hobby-text">
-              Fueling creativity one espresso at a time. From pour-overs to cold brews,
-              I'm always exploring new beans and brewing methods.
+            <h3 class="hobby-title" data-i18n="hobbies.coffee_title">COFFEE</h3>
+            <p class="hobby-text" data-i18n="hobbies.coffee_text">
+              Can't start the day without it. I like trying different beans and brewing methods — pour-over, cold brew, whatever works.
             </p>
-            <div class="sticker sticker-1">FRESH</div>
+            <div class="sticker sticker-1" data-i18n="sticker.fresh">FRESH</div>
           </div>
 
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🛹</div>
-            <h3 class="hobby-title">SKATING</h3>
-            <p class="hobby-text">
-              Street skating is where I find my flow. Every trick, every line -
-              it's about style, persistence, and pushing limits.
+            <h3 class="hobby-title" data-i18n="hobbies.skate_title">SKATING</h3>
+            <p class="hobby-text" data-i18n="hobbies.skate_text">
+              Street skating mostly. It's a good way to clear my head and stay active. Still working on new tricks.
             </p>
-            <div class="sticker sticker-2">SKATE</div>
+            <div class="sticker sticker-2" data-i18n="sticker.skate">SKATE</div>
           </div>
 
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🏐</div>
-            <h3 class="hobby-title">VOLLEYBALL</h3>
-            <p class="hobby-text">
-              Teamwork, timing, and energy. Whether it's beach or indoor,
-              volleyball keeps me sharp and connected.
+            <h3 class="hobby-title" data-i18n="hobbies.volleyball_title">VOLLEYBALL</h3>
+            <p class="hobby-text" data-i18n="hobbies.volleyball_text">
+              Beach or indoor, doesn't matter. It's fun, it's team-based, and it keeps me moving.
             </p>
-            <div class="sticker sticker-3">SPIKE</div>
+            <div class="sticker sticker-3" data-i18n="sticker.spike">SPIKE</div>
           </div>
 
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🎨</div>
-            <h3 class="hobby-title">ART</h3>
-            <p class="hobby-text">
-              From street art to digital designs, I love creating visuals that
-              tell stories and capture raw, authentic vibes.
+            <h3 class="hobby-title" data-i18n="hobbies.art_title">ART</h3>
+            <p class="hobby-text" data-i18n="hobbies.art_text">
+              I like messing around with visuals — digital stuff, doodles, whatever. Not a designer, just enjoy the process.
             </p>
-            <div class="sticker sticker-4">CREATE</div>
+            <div class="sticker sticker-4" data-i18n="sticker.create">CREATE</div>
           </div>
         </div>
       </div>
@@ -137,73 +133,36 @@
 
     <section id="work" class="section">
       <div class="container">
-        <h2 class="section-title section-title-accent">SELECTED WORK</h2>
+        <h2 class="section-title section-title-accent" data-i18n="work.title">SELECTED WORK</h2>
         <div class="accent-line"></div>
 
-        <div class="projects-grid">
-          <div class="card">
-            <div class="project-image project-image-1">
-              ANGULAR
-            </div>
-            <h3 class="project-title">VILLAGE WEBSITE</h3>
-            <p class="project-description">
-              A full website for a local village built with Angular and PrimeNG.
-              Events page with filtering, search, sorting, modals — and a lot more 
-              sections still in the works. Biggest project so far.
-            </p>
-            <a href="#" class="btn btn-small">VIEW PROJECT</a>
-          </div>
-
-          <div class="card">
-            <div class="project-image project-image-2">
-              SPRING BOOT
-            </div>
-            <h3 class="project-title project-title-alt">KÖNYVTÁR</h3>
-            <p class="project-description">
-              Library management system with full CRUD operations, built with
-              Spring Boot, Thymeleaf, and MySQL. Includes validation, custom 
-              exceptions, logging with aspects, and a proper MVC structure.
-            </p>
-            <a href="#" class="btn btn-small">VIEW PROJECT</a>
-          </div>
-
-          <div class="card">
-            <div class="project-image project-image-3">
-              PYGAME
-            </div>
-            <h3 class="project-title project-title-warning">ARENA SHOOTER</h3>
-            <p class="project-description">
-              Top-down arena survival game in Python. WASD movement, click to shoot, 
-              dash mechanic, bouncing bullets, enemy AI with obstacle avoidance, 
-              and difficulty that scales the longer you survive.
-            </p>
-            <a href="#" class="btn btn-small">VIEW PROJECT</a>
-          </div>
+        <div class="projects-grid" id="projects-grid">
         </div>
       </div>
     </section>
 
     <section id="contact" class="section section-alt">
       <div class="container contact-container">
-        <h2 class="section-title section-title-contact">LET'S WORK TOGETHER</h2>
+        <h2 class="section-title section-title-contact" data-i18n="contact.title">LET'S WORK TOGETHER</h2>
         <div class="accent-line accent-line-center"></div>
 
-        <p class="contact-intro">
+        <p class="contact-intro" data-i18n="contact.intro">
           Got a project in mind? Want to collaborate? Drop me a message and let's create something amazing.
         </p>
 
-        <form class="contact-form">
+        <form class="contact-form" id="contact-form">
           <div class="form-group">
-            <input type="text" class="form-input" placeholder="YOUR NAME" required>
+            <input type="text" name="name" class="form-input" data-i18n-placeholder="contact.name" placeholder="YOUR NAME" required>
           </div>
           <div class="form-group">
-            <input type="email" class="form-input" placeholder="YOUR EMAIL" required>
+            <input type="email" name="email" class="form-input" data-i18n-placeholder="contact.email" placeholder="YOUR EMAIL" required>
           </div>
           <div class="form-group">
-            <textarea class="form-input" rows="6" placeholder="YOUR MESSAGE" required></textarea>
+            <textarea name="message" class="form-input" rows="6" data-i18n-placeholder="contact.message" placeholder="YOUR MESSAGE" required></textarea>
           </div>
-          <button type="submit" class="btn">SEND MESSAGE</button>
+          <button type="submit" class="btn" data-i18n="contact.send">SEND MESSAGE</button>
         </form>
+        <p class="form-status" id="form-status"></p>
 
         <div class="social-links">
           <a href="mailto:lokoslevi06@gmail.com" class="social-link">EMAIL</a>
@@ -216,7 +175,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 LOKOS LEVENTE. ALL RIGHTS RESERVED.</p>
+      <p data-i18n="footer.text">&copy; 2025 LOKOS LEVENTE. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
 
