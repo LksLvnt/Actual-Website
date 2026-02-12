@@ -115,6 +115,22 @@ function seedDatabase() {
       ["sticker.skate", "en", "SKATE"], ["sticker.skate", "hu", "SKATE"],
       ["sticker.spike", "en", "SPIKE"], ["sticker.spike", "hu", "LECSAP"],
       ["sticker.create", "en", "CREATE"], ["sticker.create", "hu", "ALKOSS"],
+      ["tech.title", "en", "TECH STACK"], ["tech.title", "hu", "TECH STACK"],
+      ["about.timeline_title", "en", "TIMELINE"], ["about.timeline_title", "hu", "IDŐVONAL"],
+      ["timeline.uni", "en", "Started Programming Informatics BSc @ PTE TTK"],
+      ["timeline.uni", "hu", "Programtervező informatikus BSc elkezdése @ PTE TTK"],
+      ["timeline.hok", "en", "Elected student government representative (HÖK)"],
+      ["timeline.hok", "hu", "HÖK képviselővé választás"],
+      ["timeline.spring", "en", "Built library management system with Spring Boot"],
+      ["timeline.spring", "hu", "Könyvtár kezelő rendszer Spring Boot-tal"],
+      ["timeline.assembly", "en", "Assembly programming — disk sector reader in DOSBox"],
+      ["timeline.assembly", "hu", "Assembly programozás — szektor olvasó DOSBox-ban"],
+      ["timeline.angular", "en", "Started building a village website with Angular"],
+      ["timeline.angular", "hu", "Falu weboldal építésének kezdete Angular-ral"],
+      ["timeline.portfolio", "en", "Built this portfolio with Express + SQLite backend"],
+      ["timeline.portfolio", "hu", "Portfólió oldal Express + SQLite backend-del"],
+      ["timeline.telekom", "en", "Worked at Magyar Telekom over the summer"],
+      ["timeline.telekom", "hu", "Nyári munka a Magyar Telekomnál"],
     ];
 
     for (const row of t) {
