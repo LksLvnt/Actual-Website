@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bebas+Neue&family=Rubik+Mono+One&family=Racing+Sans+One&display=swap" rel="stylesheet">
 </head>
 <body>
+  
   <nav class="nav">
     <div class="container">
       <a href="#home" class="logo">
@@ -32,15 +33,16 @@
       </ul>
     </div>
   </nav>
-
+  
   <main>
+    
     <section id="home" class="hero">
       <div class="container">
         <h1 class="hero-title neon-glow">
           LOKOS<br/>LEVENTE
         </h1>
-        <div class="hero-subtitle" data-i18n="hero.subtitle">
-          DEVELOPER / STUDENT / PROBLEM SOLVER
+        <div class="hero-subtitle">
+          <span id="typing-target" data-i18n="hero.subtitle">DEVELOPER / STUDENT / PROBLEM SOLVER</span><span class="typing-cursor">|</span>
         </div>
         <div class="accent-line"></div>
         <p class="hero-text" data-i18n="hero.text">
@@ -48,14 +50,13 @@
         </p>
         <a href="#work" class="btn" data-i18n="hero.button">VIEW MY WORK</a>
       </div>
-      <div class="hero-decoration"></div>
+      <div class="hero-decoration" data-parallax="0.03"></div>
     </section>
-
+    
     <section id="about" class="section section-alt">
       <div class="container">
         <h2 class="section-title" data-i18n="about.title">ABOUT ME</h2>
         <div class="accent-line"></div>
-
         <div class="about-grid">
           <div class="about-col">
             <h3 class="about-heading" data-i18n="about.who">WHO I AM</h3>
@@ -68,7 +69,6 @@
               a program running in DOSBox. I also serve as a student government representative.
             </p>
           </div>
-
           <div class="about-col">
             <h3 class="about-heading about-heading-alt" data-i18n="about.skills_title">SKILLS & EXPERTISE</h3>
             <ul class="skills-list">
@@ -82,13 +82,13 @@
         </div>
       </div>
     </section>
-
+    
     <section id="hobbies" class="section hobbies-section">
       <div class="container">
         <h2 class="section-title section-title-hobbies" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
         <div class="accent-line"></div>
-
         <div class="hobbies-grid">
+          
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">☕</div>
             <h3 class="hobby-title" data-i18n="hobbies.coffee_title">COFFEE</h3>
@@ -97,7 +97,7 @@
             </p>
             <div class="sticker sticker-1" data-i18n="sticker.fresh">FRESH</div>
           </div>
-
+          
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🛹</div>
             <h3 class="hobby-title" data-i18n="hobbies.skate_title">SKATING</h3>
@@ -106,7 +106,7 @@
             </p>
             <div class="sticker sticker-2" data-i18n="sticker.skate">SKATE</div>
           </div>
-
+          
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🏐</div>
             <h3 class="hobby-title" data-i18n="hobbies.volleyball_title">VOLLEYBALL</h3>
@@ -115,7 +115,7 @@
             </p>
             <div class="sticker sticker-3" data-i18n="sticker.spike">SPIKE</div>
           </div>
-
+          
           <div class="hobby-card tape-effect">
             <div class="hobby-icon">🎨</div>
             <h3 class="hobby-title" data-i18n="hobbies.art_title">ART</h3>
@@ -126,30 +126,28 @@
           </div>
         </div>
       </div>
-
+      
       <div class="ramp-decoration ramp-left"></div>
       <div class="ramp-decoration ramp-right"></div>
     </section>
-
+    
     <section id="work" class="section">
       <div class="container">
         <h2 class="section-title section-title-accent" data-i18n="work.title">SELECTED WORK</h2>
         <div class="accent-line"></div>
-
         <div class="projects-grid" id="projects-grid">
+          
         </div>
       </div>
     </section>
-
+    
     <section id="contact" class="section section-alt">
       <div class="container contact-container">
         <h2 class="section-title section-title-contact" data-i18n="contact.title">LET'S WORK TOGETHER</h2>
         <div class="accent-line accent-line-center"></div>
-
         <p class="contact-intro" data-i18n="contact.intro">
           Got a project in mind? Want to collaborate? Drop me a message and let's create something amazing.
         </p>
-
         <form class="contact-form" id="contact-form">
           <div class="form-group">
             <input type="text" name="name" class="form-input" data-i18n-placeholder="contact.name" placeholder="YOUR NAME" required>
@@ -163,7 +161,6 @@
           <button type="submit" class="btn" data-i18n="contact.send">SEND MESSAGE</button>
         </form>
         <p class="form-status" id="form-status"></p>
-
         <div class="social-links">
           <a href="mailto:lokoslevi06@gmail.com" class="social-link">EMAIL</a>
           <a href="https://www.instagram.com/lokoslevente/" class="social-link">INSTAGRAM</a>
@@ -172,13 +169,22 @@
       </div>
     </section>
   </main>
-
+  
+  <div id="game-overlay" class="game-overlay hidden">
+    <div class="game-container">
+      <div class="game-header">
+        <span id="game-score">0</span>
+        <button id="game-close">&times;</button>
+      </div>
+      <canvas id="game-canvas" width="400" height="400"></canvas>
+      <p class="game-hint">arrow keys to move</p>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <p data-i18n="footer.text">&copy; 2025 LOKOS LEVENTE. ALL RIGHTS RESERVED.</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>

@@ -836,3 +836,92 @@ textarea.form-input {
   letter-spacing: 1px;
   min-height: 1.5rem;
 }
+
+.typing-cursor {
+  font-weight: 100;
+  animation: blink 0.7s step-end infinite;
+  color: var(--color-accent);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero {
+  overflow: hidden;
+}
+
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-overlay.hidden {
+  display: none;
+}
+
+.game-container {
+  text-align: center;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin: 0 auto 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+#game-close {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+#game-close:hover {
+  text-shadow: 0 0 10px var(--color-primary);
+}
+
+#game-canvas {
+  border: 2px solid var(--color-primary);
+  background: var(--color-bg);
+  display: block;
+  margin: 0 auto;
+}
+
+.game-hint {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.konami-active * {
+  animation: konamiRainbow 0.5s linear infinite;
+}
+
+.konami-active .hero-title {
+  animation: konamiSpin 1s ease-in-out;
+}
+
+@keyframes konamiRainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes konamiSpin {
+  0% { transform: perspective(500px) rotateY(0deg); }
+  100% { transform: perspective(500px) rotateY(360deg); }
+}

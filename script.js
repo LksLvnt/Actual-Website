@@ -1,5 +1,4 @@
 const API_BASE = "";
-
 const FALLBACK_PROJECTS = [
   {
     id: 1, title: "VILLAGE WEBSITE", tech: "ANGULAR", gradient: "primary-secondary", link: "#", sort_order: 1,
@@ -17,7 +16,6 @@ const FALLBACK_PROJECTS = [
     description_hu: "Felülnézetes aréna túlélő játék Pythonban. WASD mozgás, kattintásra lövés, dash mechanika, pattogó lövedékek, akadálykerülő ellenség AI, és a nehézség nő minél tovább élsz.",
   },
 ];
-
 const FALLBACK_TRANSLATIONS = {
   en: {
     "nav.home": "Home", "nav.about": "About", "nav.hobbies": "Hobbies",
@@ -86,17 +84,14 @@ const FALLBACK_TRANSLATIONS = {
     "sticker.spike": "LECSAP", "sticker.create": "ALKOSS",
   },
 };
-
 let currentLang = localStorage.getItem("lang") || "en";
 let translations = {};
-
 const gradientMap = {
   "primary-secondary": "project-image-1",
   "accent-warning": "project-image-2",
   "secondary-accent": "project-image-3",
 };
 const titleClasses = ["", "project-title-alt", "project-title-warning"];
-
 async function loadTranslations(lang) {
   if (API_BASE) {
     try {
@@ -109,59 +104,47 @@ async function loadTranslations(lang) {
   }
   translations = FALLBACK_TRANSLATIONS[lang] || FALLBACK_TRANSLATIONS.en;
 }
-
 function applyTranslations() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
+    if (typingInProgress && el.id === "typing-target") return;
     const key = el.getAttribute("data-i18n");
     if (translations[key]) el.textContent = translations[key];
   });
-
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const key = el.getAttribute("data-i18n-placeholder");
     if (translations[key]) el.placeholder = translations[key];
   });
-
   document.documentElement.lang = currentLang;
 }
-
 async function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem("lang", lang);
-
   const toggle = document.getElementById("lang-toggle");
   if (toggle) toggle.textContent = lang === "en" ? "HU" : "EN";
-
   await loadTranslations(lang);
   applyTranslations();
   await loadProjects();
 }
-
 async function loadProjects() {
   let projects = null;
-
   if (API_BASE) {
     try {
       const res = await fetch(`${API_BASE}/api/projects?lang=${currentLang}`);
       if (res.ok) projects = await res.json();
     } catch { /* fall through */ }
   }
-
   if (!projects) {
     projects = FALLBACK_PROJECTS.map((p) => ({
       ...p,
       description: currentLang === "hu" ? p.description_hu : p.description_en,
     }));
   }
-
   renderProjects(projects);
 }
-
 function renderProjects(projects) {
   const grid = document.getElementById("projects-grid");
   if (!grid) return;
-
   const viewText = translations["work.view_button"] || "VIEW PROJECT";
-
   grid.innerHTML = projects
     .map((p, i) => {
       const gradientClass = gradientMap[p.gradient] || `project-image-${(i % 3) + 1}`;
@@ -176,26 +159,21 @@ function renderProjects(projects) {
     })
     .join("");
 }
-
 function initContactForm() {
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   if (!form) return;
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const data = {
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
     };
-
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = "...";
     submitBtn.disabled = true;
-
     if (!API_BASE) {
       const subject = encodeURIComponent(`Portfolio contact: ${data.name}`);
       const body = encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`);
@@ -204,16 +182,13 @@ function initContactForm() {
       submitBtn.disabled = false;
       return;
     }
-
     try {
       const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
       if (!res.ok) throw new Error("Send failed");
-
       status.textContent = translations["contact.success"] || "Message sent! I'll get back to you soon.";
       status.style.color = "var(--color-accent)";
       form.reset();
@@ -221,22 +196,18 @@ function initContactForm() {
       status.textContent = translations["contact.error"] || "Something went wrong. Try emailing me directly.";
       status.style.color = "var(--color-primary)";
     }
-
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
     setTimeout(() => { status.textContent = ""; }, 5000);
   });
 }
-
 function initMobileMenu() {
   const menuBtn = document.querySelector(".mobile-menu-btn");
   const navMenu = document.getElementById("nav-menu");
-
   if (menuBtn && navMenu) {
     menuBtn.addEventListener("click", () => {
       navMenu.classList.toggle("active");
     });
-
     document.querySelectorAll(".nav-link").forEach((link) => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("active");
@@ -244,7 +215,6 @@ function initMobileMenu() {
     });
   }
 }
-
 function initScrollAnimations() {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -254,10 +224,8 @@ function initScrollAnimations() {
     },
     { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
   );
-
   document.querySelectorAll(".section").forEach((s) => observer.observe(s));
 }
-
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -267,13 +235,237 @@ function initSmoothScroll() {
     });
   });
 }
+let typingInProgress = false;
+function initTypingEffect() {
+  const target = document.getElementById("typing-target");
+  if (!target) return;
+  const text = target.textContent.trim();
+  target.textContent = "";
+  target.removeAttribute("data-i18n");
+  typingInProgress = true;
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      target.textContent += text[i];
+      i++;
+      setTimeout(type, 60 + Math.random() * 40);
+    } else {
+      target.setAttribute("data-i18n", "hero.subtitle");
+      typingInProgress = false;
+    }
+  }
+  setTimeout(type, 800);
+}
 
+function initParallax() {
+  const hero = document.querySelector(".hero");
+  const decoration = document.querySelector("[data-parallax]");
+  const title = document.querySelector(".hero-title");
+  if (!hero || !decoration) return;
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const speed = parseFloat(decoration.dataset.parallax);
+    decoration.style.transform = `translate(calc(-50% + ${x * speed * 1000}px), calc(-50% + ${y * speed * 1000}px)) rotate(5deg)`;
+    if (title) {
+      title.style.transform = `translate(${x * -8}px, ${y * -8}px)`;
+    }
+  });
+  hero.addEventListener("mouseleave", () => {
+    decoration.style.transform = "translate(-50%, -50%) rotate(5deg)";
+    if (title) title.style.transform = "translate(0, 0)";
+  });
+}
+function initKonamiCode() {
+  const code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+  let pos = 0;
+  document.addEventListener("keydown", (e) => {
+    if (document.getElementById("game-overlay") &&
+        !document.getElementById("game-overlay").classList.contains("hidden")) return;
+    if (e.keyCode === code[pos]) {
+      pos++;
+      if (pos === code.length) {
+        pos = 0;
+        triggerKonami();
+      }
+    } else {
+      pos = 0;
+    }
+  });
+}
+function triggerKonami() {
+  document.body.classList.add("konami-active");
+  for (let i = 0; i < 50; i++) {
+    const emoji = document.createElement("div");
+    emoji.textContent = ["🛹", "☕", "🏐", "💻", "🎮"][Math.floor(Math.random() * 5)];
+    emoji.style.cssText = `
+      position: fixed;
+      top: -50px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${20 + Math.random() * 30}px;
+      z-index: 10000;
+      pointer-events: none;
+      animation: emojiFall ${2 + Math.random() * 3}s linear forwards;
+    `;
+    document.body.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 5000);
+  }
+  if (!document.getElementById("emoji-fall-style")) {
+    const style = document.createElement("style");
+    style.id = "emoji-fall-style";
+    style.textContent = `
+      @keyframes emojiFall {
+        to { top: 110vh; transform: rotate(${Math.random() * 720}deg); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  setTimeout(() => document.body.classList.remove("konami-active"), 3000);
+}
+function initSnakeGame() {
+  const overlay = document.getElementById("game-overlay");
+  const closeBtn = document.getElementById("game-close");
+  const canvas = document.getElementById("game-canvas");
+  const scoreEl = document.getElementById("game-score");
+  if (!overlay || !canvas) return;
+  const ctx = canvas.getContext("2d");
+  const grid = 20;
+  const cols = canvas.width / grid;
+  const rows = canvas.height / grid;
+  let snake, food, dir, nextDir, score, gameLoop, running;
+  function reset() {
+    snake = [{ x: 10, y: 10 }];
+    dir = { x: 1, y: 0 };
+    nextDir = { x: 1, y: 0 };
+    score = 0;
+    scoreEl.textContent = "0";
+    placeFood();
+  }
+  function placeFood() {
+    food = {
+      x: Math.floor(Math.random() * cols),
+      y: Math.floor(Math.random() * rows),
+    };
+    for (const s of snake) {
+      if (s.x === food.x && s.y === food.y) return placeFood();
+    }
+  }
+  function draw() {
+    ctx.fillStyle = "#0a0a0a";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ff006e";
+    ctx.shadowColor = "#ff006e";
+    ctx.shadowBlur = 10;
+    ctx.fillRect(food.x * grid + 2, food.y * grid + 2, grid - 4, grid - 4);
+    ctx.shadowBlur = 0;
+    snake.forEach((s, i) => {
+      ctx.fillStyle = i === 0 ? "#00f5ff" : "#8338ec";
+      ctx.shadowColor = i === 0 ? "#00f5ff" : "#8338ec";
+      ctx.shadowBlur = i === 0 ? 8 : 4;
+      ctx.fillRect(s.x * grid + 1, s.y * grid + 1, grid - 2, grid - 2);
+    });
+    ctx.shadowBlur = 0;
+  }
+  function update() {
+    dir = nextDir;
+    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+    if (head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows) {
+      return gameOver();
+    }
+    for (const s of snake) {
+      if (s.x === head.x && s.y === head.y) return gameOver();
+    }
+    snake.unshift(head);
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      scoreEl.textContent = score;
+      placeFood();
+    } else {
+      snake.pop();
+    }
+    draw();
+  }
+  function gameOver() {
+    clearInterval(gameLoop);
+    running = false;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#ff006e";
+    ctx.font = "30px 'Bebas Neue', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 10);
+    ctx.fillStyle = "#00f5ff";
+    ctx.font = "20px 'Bebas Neue', sans-serif";
+    ctx.fillText("SCORE: " + score, canvas.width / 2, canvas.height / 2 + 20);
+    ctx.fillStyle = "#b0b0b0";
+    ctx.font = "16px 'Bebas Neue', sans-serif";
+    ctx.fillText("PRESS SPACE TO RESTART", canvas.width / 2, canvas.height / 2 + 50);
+  }
+  function start() {
+    if (running) return;
+    running = true;
+    reset();
+    draw();
+    gameLoop = setInterval(update, 100);
+  }
+  function openGame() {
+    overlay.classList.remove("hidden");
+    start();
+  }
+  function closeGame() {
+    overlay.classList.add("hidden");
+    clearInterval(gameLoop);
+    running = false;
+  }
+  closeBtn.addEventListener("click", closeGame);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeGame();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (overlay.classList.contains("hidden")) return;
+    e.preventDefault();
+    if (e.key === "Escape") return closeGame();
+    if (e.key === " " && !running) return start();
+    const dirs = {
+      ArrowUp: { x: 0, y: -1 },
+      ArrowDown: { x: 0, y: 1 },
+      ArrowLeft: { x: -1, y: 0 },
+      ArrowRight: { x: 1, y: 0 },
+    };
+    const newDir = dirs[e.key];
+    if (newDir && !(newDir.x === -dir.x && newDir.y === -dir.y)) {
+      nextDir = newDir;
+    }
+  });
+  window._openSnakeGame = openGame;
+  const logo = document.querySelector(".logo-img");
+  if (logo) {
+    let clicks = 0;
+    let timer;
+    logo.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      clicks++;
+      clearTimeout(timer);
+      if (clicks >= 3) {
+        clicks = 0;
+        openGame();
+      } else {
+        timer = setTimeout(() => { clicks = 0; }, 600);
+      }
+    });
+  }
+}
 async function init() {
   initMobileMenu();
   initScrollAnimations();
   initSmoothScroll();
   initContactForm();
-
+  initTypingEffect();
+  initParallax();
+  initKonamiCode();
+  initSnakeGame();
   const toggle = document.getElementById("lang-toggle");
   if (toggle) {
     toggle.textContent = currentLang === "en" ? "HU" : "EN";
@@ -281,10 +473,8 @@ async function init() {
       setLanguage(currentLang === "en" ? "hu" : "en");
     });
   }
-
   await loadTranslations(currentLang);
   applyTranslations();
   await loadProjects();
 }
-
 init();
