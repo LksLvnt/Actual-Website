@@ -1,90 +1,54 @@
-# Lokos Levente - Personal Portfolio
+# lokoslevente.com
 
-A modern, edgy portfolio website built with Astro, featuring a graffiti/skate/vintage aesthetic.
+My personal portfolio site. Dark theme, neon accents, skate/street vibes — because generic portfolio templates are boring.
 
-## 🚀 Getting Started
+## Stack
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn
+Plain HTML, CSS, JS. No frameworks, no build steps, no overthinking it. Just open `index.html` and you're good.
 
-### Installation
+Hosted on GitHub Pages with a custom domain.
 
-```bash
-# Install dependencies
-npm install
+## Fonts
 
-# Start development server
-npm run dev
+- **Permanent Marker** – for the graffiti feel
+- **Bebas Neue** – headings
+- **Rubik Mono One** – retro sections
+- **Racing Sans One** – because why not
 
-# Build for production
-npm run build
+All loaded from Google Fonts.
 
-# Preview production build
-npm run preview
-```
+## Color palette
 
-## 🎨 Design Theme
+| Variable | Color | Used for |
+|---|---|---|
+| `--color-primary` | `#ff006e` (pink) | Main accent, buttons, highlights |
+| `--color-secondary` | `#8338ec` (purple) | Secondary elements |
+| `--color-accent` | `#00f5ff` (cyan) | Neon glow, links |
+| `--color-warning` | `#ffbe0b` (yellow) | Stickers, alt highlights |
 
-This site features a bold, street-inspired design with:
-- Graffiti-style typography
-- Neon color accents
-- Vintage skate culture vibes
-- Dark mode aesthetic
-- Smooth animations
+Everything sits on a `#0a0a0a` dark background.
 
-## 📝 Customization
-
-### Colors
-Edit colors in `src/styles/global.css`:
-- `--color-primary`: Main accent color (pink)
-- `--color-secondary`: Secondary accent (purple)
-- `--color-accent`: Highlight color (cyan)
-
-### Content
-Update your information in `src/pages/index.astro`:
-- Hero section: Your name and tagline
-- About section: Your bio and skills
-- Work section: Your projects
-- Contact section: Your contact info and social links
-
-### Fonts
-Google Fonts used:
-- Permanent Marker (graffiti style)
-- Bebas Neue (display text)
-- Rubik Mono One (retro)
-- Racing Sans One (racing style)
-
-## 🌐 Deployment
-
-This site is configured for GitHub Pages and will deploy to:
-**lokoslevente.com**
-
-To deploy:
-1. Push to your main branch
-2. Enable GitHub Pages in repo settings
-3. Site will be live at your custom domain
-
-## 📦 Project Structure
+## What's in here
 
 ```
-/
-├── public/           # Static assets
-├── src/
-│   ├── layouts/      # Layout components
-│   ├── pages/        # Page routes
-│   ├── styles/       # Global styles
-│   └── components/   # Reusable components
-├── astro.config.mjs  # Astro configuration
-└── package.json      # Dependencies
+index.html    – the whole site, single page
+style.css     – all the styling (~800 lines)
+script.js     – mobile menu, scroll animations, smooth scroll
+favicon.png   – site icon
+logo.svg      – logo
+CNAME         – custom domain config
 ```
 
-## 🛠 Built With
+## Running locally
 
-- [Astro](https://astro.build) - Static site generator
-- CSS3 - Styling and animations
-- TypeScript - Type safety
+Just open `index.html` in a browser. That's it.
+
+## TODO
+
+- [ ] Add actual projects to the work section
+- [ ] Wire up the contact form (or replace with mailto)
+- [ ] Optimize images
 
 ---
 
-Made with 🛹 by Lokos Levente
+Built by [Lokos Levente](https://github.com/LksLvnt)
