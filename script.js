@@ -234,15 +234,24 @@ function initMobileMenu() {
   }
 }
 function initScrollAnimations() {
+  document.querySelectorAll(
+    ".section-title, .about-col, .hobby-card, .card, .timeline-item, .tech-item, .contact-form, .contact-intro, .accent-line, .social-links"
+  ).forEach((el) => el.classList.add("reveal"));
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("animate-in");
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
       });
     },
-    { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
   );
-  document.querySelectorAll(".section").forEach((s) => observer.observe(s));
+  document.querySelectorAll(".reveal").forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 5) * 0.1}s`;
+    observer.observe(el);
+  });
 }
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
