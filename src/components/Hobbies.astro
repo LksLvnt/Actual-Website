@@ -1,0 +1,26 @@
+---
+const hobbies = [
+  { icon: '☕', titleKey: 'hobbies.coffee_title', title: 'COFFEE', textKey: 'hobbies.coffee_text', text: "Can't start the day without it. I like trying different beans and brewing methods — pour-over, cold brew, whatever works.", stickerKey: 'sticker.fresh', sticker: 'FRESH', stickerClass: 'sticker-1' },
+  { icon: '🛹', titleKey: 'hobbies.skate_title', title: 'SKATING', textKey: 'hobbies.skate_text', text: "Street skating mostly. It's a good way to clear my head and stay active. Still working on new tricks.", stickerKey: 'sticker.skate', sticker: 'SKATE', stickerClass: 'sticker-2' },
+  { icon: '🏐', titleKey: 'hobbies.volleyball_title', title: 'VOLLEYBALL', textKey: 'hobbies.volleyball_text', text: "Beach or indoor, doesn't matter. It's fun, it's team-based, and it keeps me moving.", stickerKey: 'sticker.spike', sticker: 'SPIKE', stickerClass: 'sticker-3' },
+  { icon: '🎨', titleKey: 'hobbies.art_title', title: 'ART', textKey: 'hobbies.art_text', text: "I like messing around with visuals — digital stuff, doodles, whatever. Not a designer, just enjoy the process.", stickerKey: 'sticker.create', sticker: 'CREATE', stickerClass: 'sticker-4' },
+];
+---
+<section id="hobbies" class="min-h-screen py-24 relative overflow-hidden">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <h2 class="section-title-hobbies mb-4" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
+    <div class="accent-line mb-8"></div>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 mt-12">
+      {hobbies.map((h) => (
+        <div class="hobby-card tape-effect">
+          <div class="hobby-icon">{h.icon}</div>
+          <h3 class="hobby-title" data-i18n={h.titleKey}>{h.title}</h3>
+          <p class="hobby-text" data-i18n={h.textKey}>{h.text}</p>
+          <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="ramp-decoration ramp-left"></div>
+  <div class="ramp-decoration ramp-right"></div>
+</section>

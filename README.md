@@ -1,69 +1,62 @@
-# Lokos Levente - Personal Portfolio
+# LOKOS LEVENTE — Portfolio
 
-A modern, edgy portfolio website built with Astro, featuring a graffiti/skate/vintage aesthetic.
+Personal portfolio site. Street/skate aesthetic, dark theme, neon accents.
 
-## 🚀 Getting Started
+## Stack
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn
+Frontend: Astro + Tailwind CSS.
+Backend: Express + SQLite (`server/` folder) for projects API, translations, and contact form.
 
-## 🎨 Design Theme
-
-This site features a bold, street-inspired design with:
-- Graffiti-style typography
-- Neon color accents
-- Vintage skate culture vibes
-- Dark mode aesthetic
-- Smooth animations
-
-## 📝 Customization
-
-### Colors
-Edit colors in `src/styles/global.css`:
-- `--color-primary`: Main accent color (pink)
-- `--color-secondary`: Secondary accent (purple)
-- `--color-accent`: Highlight color (cyan)
-
-### Content
-Update your information in `src/pages/index.astro`:
-- Hero section: Your name and tagline
-- About section: Your bio and skills
-- Work section: Your projects
-- Contact section: Your contact info and social links
-
-### Fonts
-Google Fonts used:
-- Permanent Marker (graffiti style)
-- Bebas Neue (display text)
-- Rubik Mono One (retro)
-- Racing Sans One (racing style)
-
-## 🌐 Deployment
-
-This site is configured for GitHub Pages and will deploy to:
-**lokoslevente.com**
-
-## 📦 Project Structure
+## What's in here
 
 ```
-/
-├── public/           # Static assets
-├── src/
-│   ├── layouts/      # Layout components
-│   ├── pages/        # Page routes
-│   ├── styles/       # Global styles
-│   └── components/   # Reusable components
-├── astro.config.mjs  # Astro configuration
-└── package.json      # Dependencies
+src/
+  pages/index.astro     – main page
+  layouts/Base.astro    – base HTML layout
+  components/           – Nav, Hero, Quote, About, TechStack, Hobbies, Projects, Contact, Footer, SnakeGame
+  scripts/main.ts       – i18n, API calls, contact form, gimmicks
+  styles/global.css     – custom styles (cards, stickers, timeline, etc)
+public/
+  favicon.png           – site icon
+  logo.svg              – logo
+  CNAME                 – custom domain config
+server/
+  index.js              – Express API
+  package.json          – backend dependencies
+  data/                 – SQLite DB (auto-created)
+  .env                  – email config (not in git)
 ```
 
-## 🛠 Built With
+## Running locally
 
-- [Astro](https://astro.build) - Static site generator
-- CSS3 - Styling and animations
-- TypeScript - Type safety
+Frontend:
+```
+npm install
+npm run dev
+```
 
----
+Backend:
+```
+cd server
+cp .env.example .env
+npm install
+npm run dev
+```
 
-Made with 🛹 by Lokos Levente
+## Deploy
+
+`npm run build` outputs static files to `dist/`. Push to GitHub Pages.
+
+## Easter eggs
+
+- Triple-click the logo
+- ↑↑↓↓←→←→BA
+
+## TODO
+
+- [x] Add actual projects to the work section
+- [x] Wire up the contact form
+- [x] Add EN/HU language switching
+- [x] Migrate to Astro + Tailwind
+- [ ] Deploy backend somewhere
+- [ ] Project detail pages

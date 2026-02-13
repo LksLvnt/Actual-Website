@@ -1,0 +1,39 @@
+---
+const techs = [
+  { name: 'JavaScript', icon: 'javascript/javascript-original' },
+  { name: 'TypeScript', icon: 'typescript/typescript-original' },
+  { name: 'Python', icon: 'python/python-original' },
+  { name: 'Java', icon: 'java/java-original' },
+  { name: 'C#', icon: 'csharp/csharp-original' },
+  { name: 'C', icon: 'c/c-original' },
+  { name: 'C++', icon: 'cplusplus/cplusplus-original' },
+  { name: 'HTML', icon: 'html5/html5-original' },
+  { name: 'CSS', icon: 'css3/css3-original' },
+  { name: 'Angular', icon: 'angular/angular-original' },
+  { name: 'Spring', icon: 'spring/spring-original' },
+  { name: 'Node.js', icon: 'nodejs/nodejs-original' },
+  { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
+  { name: 'MySQL', icon: 'mysql/mysql-original' },
+  { name: 'Linux', icon: 'linux/linux-original' },
+  { name: 'Git', icon: 'git/git-original' },
+  { name: 'Docker', icon: 'docker/docker-original' },
+];
+---
+<section class="min-h-screen py-24 bg-bg-alt">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <h2 class="font-chunky text-[clamp(2rem,5vw,3.5rem)] text-accent [text-shadow:2px_2px_0_#ff006e] mb-4" data-i18n="tech.title">TECH STACK</h2>
+    <div class="accent-line mb-8"></div>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-8 max-w-[900px]">
+      {techs.map((t) => (
+        <div class="flex flex-col items-center gap-2 group transition-transform hover:-translate-y-1">
+          <img
+            src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${t.icon}.svg`}
+            alt={t.name}
+            class="w-12 h-12 grayscale brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-300"
+          />
+          <span class="font-display text-sm text-text-muted group-hover:text-text tracking-wider text-center transition-colors">{t.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
