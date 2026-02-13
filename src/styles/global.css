@@ -1,39 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bebas+Neue&family=Rubik+Mono+One&family=Racing+Sans+One&display=swap');
+@import 'lenis/dist/lenis.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
 
 body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
-body.loaded {
-  opacity: 1;
+body.loaded { opacity: 1; }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+  pointer-events: none;
+  z-index: 1;
 }
 
-::selection {
-  background: #ff006e;
-  color: #0a0a0a;
-}
+::selection { background: #ff006e; color: #0a0a0a; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #ff006e; border-radius: 4px; }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ff006e;
-  border-radius: 4px;
-}
+h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+h1 { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; font-family: 'Permanent Marker', cursive; }
+h2 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
+h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
 
 .accent-line {
   width: 100px;
@@ -42,24 +47,25 @@ body.loaded {
   transform: skewX(-20deg);
 }
 
-.project-gradient-1 {
-  background: linear-gradient(135deg, #ff006e, #8338ec);
-}
-
-.project-gradient-2 {
-  background: linear-gradient(135deg, #00f5ff, #ffbe0b);
-}
-
-.project-gradient-3 {
-  background: linear-gradient(135deg, #8338ec, #00f5ff);
-}
-
-.btn-glow {
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border: 3px solid #ff006e;
+  color: #ff006e;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
-.btn-glow::before {
+.btn::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -70,82 +76,133 @@ body.loaded {
   transition: transform 0.4s ease;
 }
 
-.btn-glow:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.btn:hover::before { transform: scaleX(1); transform-origin: left; }
+.btn:hover { color: #0a0a0a; }
 
-.btn-glow:hover {
-  color: #0a0a0a;
-  border-color: #ff006e;
-}
+.btn-small { padding: 0.6rem 1.2rem; font-size: 1rem; }
 
-.tape-effect {
+.card {
+  background: #1a1a1a;
+  border: 2px solid #8338ec;
+  padding: 2rem;
   position: relative;
+  transform: skewY(-1deg);
+  transition: all 0.3s ease;
 }
+
+.card:hover {
+  transform: skewY(-1deg) translateY(-10px);
+  border-color: #ff006e;
+  box-shadow: 0 10px 30px rgba(255,0,110,0.3);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border: 2px solid #00f5ff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card:hover::before { opacity: 0.5; }
+
+.project-image {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;
+  color: white;
+}
+
+.project-image-1 { background: linear-gradient(135deg, #ff006e, #8338ec); }
+.project-image-2 { background: linear-gradient(135deg, #00f5ff, #ffbe0b); }
+.project-image-3 { background: linear-gradient(135deg, #8338ec, #00f5ff); }
+
+.project-title { font-family: 'Racing Sans One', sans-serif; color: #ff006e; margin-bottom: 1rem; }
+.project-title-alt { color: #00f5ff; }
+.project-title-warning { color: #ffbe0b; }
+.project-description { color: #b0b0b0; line-height: 1.6; margin-bottom: 1rem; }
+
+.hobby-card {
+  background: #1a1a1a;
+  padding: 2.5rem 2rem;
+  position: relative;
+  transform: rotate(1deg);
+  transition: all 0.3s ease;
+  border: 3px solid #8338ec;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+}
+
+.hobby-card:nth-child(even) { transform: rotate(-1deg); }
+.hobby-card:hover { transform: rotate(0deg) translateY(-10px); box-shadow: 8px 8px 0 rgba(0,0,0,0.5); }
 
 .tape-effect::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  width: 60px;
-  height: 20px;
-  background: rgba(255, 190, 11, 0.3);
-  border-radius: 2px;
+  top: -10px; left: 20%; width: 60%; height: 20px;
+  background: repeating-linear-gradient(45deg, rgba(255,190,11,0.3), rgba(255,190,11,0.3) 10px, rgba(255,190,11,0.5) 10px, rgba(255,190,11,0.5) 20px);
+  transform: rotate(-2deg);
+  border: 1px solid rgba(255,190,11,0.4);
 }
+
+.tape-effect::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; right: 20%; width: 50%; height: 20px;
+  background: repeating-linear-gradient(-45deg, rgba(0,245,255,0.3), rgba(0,245,255,0.3) 10px, rgba(0,245,255,0.5) 10px, rgba(0,245,255,0.5) 20px);
+  transform: rotate(3deg);
+  border: 1px solid rgba(0,245,255,0.4);
+}
+
+.hobby-icon { font-size: 4rem; margin-bottom: 1rem; filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3)); }
+.hobby-title { font-family: 'Racing Sans One', sans-serif; color: #ff006e; margin-bottom: 1rem; font-size: 2rem; transform: skewX(-5deg); }
+.hobby-text { color: #b0b0b0; line-height: 1.8; font-size: 1rem; }
 
 .sticker {
   position: absolute;
-  padding: 0.3rem 0.8rem;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 0.85rem;
-  transform: rotate(-5deg);
+  top: 10px; right: 10px;
+  padding: 0.5rem 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-radius: 50px;
+  transform: rotate(12deg);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
   border: 2px solid;
-  border-radius: 2px;
-  letter-spacing: 2px;
 }
 
-.sticker-1 {
-  bottom: 1rem;
-  right: 1rem;
-  color: #00f5ff;
-  border-color: #00f5ff;
-  transform: rotate(3deg);
+.sticker-1 { background: #ffbe0b; color: #0a0a0a; border-color: #0a0a0a; }
+.sticker-2 { background: #ff006e; color: white; border-color: white; transform: rotate(-15deg); }
+.sticker-3 { background: #00f5ff; color: #0a0a0a; border-color: #0a0a0a; transform: rotate(8deg); }
+.sticker-4 { background: #8338ec; color: white; border-color: white; transform: rotate(-12deg); }
+
+.ramp-decoration {
+  position: absolute;
+  width: 300px; height: 300px;
+  border: 4px solid #ff006e;
+  opacity: 0.1; z-index: 0;
 }
 
-.sticker-2 {
-  bottom: 1rem;
-  right: 1rem;
-  color: #ff006e;
-  border-color: #ff006e;
-  transform: rotate(-4deg);
-}
+.ramp-left { top: 10%; left: -150px; transform: rotate(25deg) skewY(-10deg); border-color: #00f5ff; }
+.ramp-right { bottom: 10%; right: -150px; transform: rotate(-25deg) skewY(10deg); }
 
-.sticker-3 {
-  bottom: 1rem;
-  right: 1rem;
+.section-title-hobbies {
   color: #ffbe0b;
-  border-color: #ffbe0b;
-  transform: rotate(5deg);
-}
-
-.sticker-4 {
-  bottom: 1rem;
-  right: 1rem;
-  color: #8338ec;
-  border-color: #8338ec;
-  transform: rotate(-3deg);
+  text-shadow: 3px 3px 0 #ff006e;
+  transform: rotate(-2deg);
 }
 
 .timeline-center::before {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  left: 50%; top: 0; bottom: 0; width: 2px;
   transform: translateX(-50%);
   background: linear-gradient(180deg, #00f5ff, #8338ec, #ff006e);
 }
@@ -153,27 +210,32 @@ body.loaded {
 .timeline-dot::before {
   content: '';
   position: absolute;
-  top: 5px;
-  width: 14px;
-  height: 14px;
+  top: 5px; width: 14px; height: 14px;
   border-radius: 50%;
   background: #ff006e;
   box-shadow: 0 0 10px #ff006e;
   z-index: 1;
 }
 
-.timeline-dot-left::before {
-  right: -7px;
+.timeline-dot-left::before { right: -7px; }
+.timeline-dot-right::before { left: -7px; }
+.timeline-dot-alt::before { background: #00f5ff; box-shadow: 0 0 10px #00f5ff; }
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  background: #0a0a0a;
+  border: 2px solid #8338ec;
+  color: #f5f5f5;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  transition: border-color 0.3s ease;
 }
 
-.timeline-dot-right::before {
-  left: -7px;
-}
-
-.timeline-dot-alt::before {
-  background: #00f5ff;
-  box-shadow: 0 0 10px #00f5ff;
-}
+.form-input:focus { outline: none; border-color: #ff006e; box-shadow: 0 0 10px rgba(255,0,110,0.3); }
+.form-input::placeholder { color: #b0b0b0; }
+textarea.form-input { resize: vertical; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
 .reveal {
   opacity: 0;
@@ -181,23 +243,13 @@ body.loaded {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-.hero-parallax {
-  transition: transform 0.1s ease-out;
-}
-
-#game-canvas {
-  border: 2px solid #ff006e;
-  background: #0a0a0a;
-}
+#game-canvas { border: 2px solid #ff006e; background: #0a0a0a; }
 
 @media (max-width: 768px) {
-  .timeline-center::before {
-    left: 6px;
-    transform: none;
-  }
+  .timeline-center::before { left: 6px; transform: none; }
+  .timeline-dot-left::before, .timeline-dot-right::before { left: 0; right: auto; }
+  .card { transform: none; }
+  .card:hover { transform: translateY(-5px); }
 }

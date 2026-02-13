@@ -1,3 +1,17 @@
+import Lenis from 'lenis';
+
+const lenis = new Lenis({
+  duration: 1.4,
+  easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothWheel: true,
+});
+
+function raf(time: number) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
 const API_BASE = "";
 
 const FALLBACK_PROJECTS = [
@@ -100,11 +114,11 @@ const FALLBACK_TRANSLATIONS: Record<string, Record<string, string>> = {
 };
 
 const gradientMap: Record<string, string> = {
-  "primary-secondary": "project-gradient-1",
-  "accent-warning": "project-gradient-2",
-  "secondary-accent": "project-gradient-3",
+  "primary-secondary": "project-image-1",
+  "accent-warning": "project-image-2",
+  "secondary-accent": "project-image-3",
 };
-const titleColors = ["text-primary", "text-accent", "text-warning"];
+const titleColors = ["", "project-title-alt", "project-title-warning"];
 
 let currentLang = localStorage.getItem("lang") || "en";
 let translations: Record<string, string> = {};
@@ -165,16 +179,14 @@ function renderProjects(projects: any[]) {
   if (!grid) return;
   const viewText = translations["work.view_button"] || "VIEW PROJECT";
   grid.innerHTML = projects.map((p, i) => {
-    const gradient = gradientMap[p.gradient] || `project-gradient-${(i % 3) + 1}`;
+    const gradient = gradientMap[p.gradient] || `project-image-${(i % 3) + 1}`;
     const color = titleColors[i % titleColors.length];
     return `
-      <div class="bg-bg-alt border-2 border-white/10 overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-        <div class="${gradient} h-48 flex items-center justify-center font-chunky text-3xl text-bg tracking-widest">${p.tech}</div>
-        <div class="p-6">
-          <h3 class="font-graffiti text-xl ${color} mb-2">${p.title}</h3>
-          <p class="text-text-muted text-sm leading-relaxed mb-4">${p.description}</p>
-          <a href="${p.link}" class="inline-block px-4 py-2 font-display text-sm uppercase tracking-widest border-2 border-primary text-primary btn-glow transition-all">${viewText}</a>
-        </div>
+      <div class="card">
+        <div class="project-image ${gradient}">${p.tech}</div>
+        <h3 class="project-title ${color}">${p.title}</h3>
+        <p class="project-description">${p.description}</p>
+        <a href="${p.link}" class="btn btn-small">${viewText}</a>
       </div>`;
   }).join("");
 }
@@ -233,6 +245,13 @@ function initMobileMenu() {
     btn.addEventListener("click", () => menu.classList.toggle("!flex"));
     document.querySelectorAll(".nav-link").forEach((l) => l.addEventListener("click", () => menu.classList.remove("!flex")));
   }
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.querySelector((anchor as HTMLAnchorElement).getAttribute("href")!);
+      if (target) lenis.scrollTo(target as HTMLElement);
+    });
+  });
 }
 
 function initTypingEffect() {
