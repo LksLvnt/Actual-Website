@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bebas+Neue&family=Rubik+Mono+One&family=Racing+Sans+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+::selection {
+  background: #ff006e;
+  color: #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff006e;
+  border-radius: 4px;
+}
+
+.accent-line {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff006e, #00f5ff);
+  transform: skewX(-20deg);
+}
+
+.project-gradient-1 {
+  background: linear-gradient(135deg, #ff006e, #8338ec);
+}
+
+.project-gradient-2 {
+  background: linear-gradient(135deg, #00f5ff, #ffbe0b);
+}
+
+.project-gradient-3 {
+  background: linear-gradient(135deg, #8338ec, #00f5ff);
+}
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ff006e;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.btn-glow:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-glow:hover {
+  color: #0a0a0a;
+  border-color: #ff006e;
+}
+
+.tape-effect {
+  position: relative;
+}
+
+.tape-effect::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60px;
+  height: 20px;
+  background: rgba(255, 190, 11, 0.3);
+  border-radius: 2px;
+}
+
+.sticker {
+  position: absolute;
+  padding: 0.3rem 0.8rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.85rem;
+  transform: rotate(-5deg);
+  border: 2px solid;
+  border-radius: 2px;
+  letter-spacing: 2px;
+}
+
+.sticker-1 {
+  bottom: 1rem;
+  right: 1rem;
+  color: #00f5ff;
+  border-color: #00f5ff;
+  transform: rotate(3deg);
+}
+
+.sticker-2 {
+  bottom: 1rem;
+  right: 1rem;
+  color: #ff006e;
+  border-color: #ff006e;
+  transform: rotate(-4deg);
+}
+
+.sticker-3 {
+  bottom: 1rem;
+  right: 1rem;
+  color: #ffbe0b;
+  border-color: #ffbe0b;
+  transform: rotate(5deg);
+}
+
+.sticker-4 {
+  bottom: 1rem;
+  right: 1rem;
+  color: #8338ec;
+  border-color: #8338ec;
+  transform: rotate(-3deg);
+}
+
+.timeline-center::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #00f5ff, #8338ec, #ff006e);
+}
+
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff006e;
+  box-shadow: 0 0 10px #ff006e;
+  z-index: 1;
+}
+
+.timeline-dot-left::before {
+  right: -7px;
+}
+
+.timeline-dot-right::before {
+  left: -7px;
+}
+
+.timeline-dot-alt::before {
+  background: #00f5ff;
+  box-shadow: 0 0 10px #00f5ff;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-parallax {
+  transition: transform 0.1s ease-out;
+}
+
+#game-canvas {
+  border: 2px solid #ff006e;
+  background: #0a0a0a;
+}
+
+@media (max-width: 768px) {
+  .timeline-center::before {
+    left: 6px;
+    transform: none;
+  }
+}

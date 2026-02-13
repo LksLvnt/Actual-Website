@@ -1,0 +1,24 @@
+---
+const hobbies = [
+  { icon: '☕', titleKey: 'hobbies.coffee_title', title: 'COFFEE', textKey: 'hobbies.coffee_text', text: "Can't start the day without it. I like trying different beans and brewing methods — pour-over, cold brew, whatever works.", stickerKey: 'sticker.fresh', sticker: 'FRESH', stickerClass: 'sticker-1' },
+  { icon: '🛹', titleKey: 'hobbies.skate_title', title: 'SKATING', textKey: 'hobbies.skate_text', text: "Street skating mostly. It's a good way to clear my head and stay active. Still working on new tricks.", stickerKey: 'sticker.skate', sticker: 'SKATE', stickerClass: 'sticker-2' },
+  { icon: '🏐', titleKey: 'hobbies.volleyball_title', title: 'VOLLEYBALL', textKey: 'hobbies.volleyball_text', text: "Beach or indoor, doesn't matter. It's fun, it's team-based, and it keeps me moving.", stickerKey: 'sticker.spike', sticker: 'SPIKE', stickerClass: 'sticker-3' },
+  { icon: '🎨', titleKey: 'hobbies.art_title', title: 'ART', textKey: 'hobbies.art_text', text: "I like messing around with visuals — digital stuff, doodles, whatever. Not a designer, just enjoy the process.", stickerKey: 'sticker.create', sticker: 'CREATE', stickerClass: 'sticker-4' },
+];
+---
+<section id="hobbies" class="min-h-screen py-24 relative">
+  <div class="max-w-[1200px] mx-auto px-8">
+    <h2 class="font-chunky text-[clamp(2rem,5vw,3.5rem)] text-warning [text-shadow:2px_2px_0_#ff006e] mb-4" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
+    <div class="accent-line mb-8"></div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {hobbies.map((h) => (
+        <div class="relative bg-bg-alt border-2 border-white/10 p-6 tape-effect hover:-translate-y-1 transition-transform duration-300">
+          <div class="text-4xl mb-4">{h.icon}</div>
+          <h3 class="font-graffiti text-xl text-text mb-3" data-i18n={h.titleKey}>{h.title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed" data-i18n={h.textKey}>{h.text}</p>
+          <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
