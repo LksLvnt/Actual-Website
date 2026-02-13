@@ -25,9 +25,9 @@ const hobbies = [
       ))}
     </div>
     <div class="md:hidden mt-12 relative">
-      <div class="hobby-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-8 px-8" id="hobby-carousel">
+      <div class="hobby-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-8 px-8 pt-4" id="hobby-carousel" data-lenis-prevent>
         {hobbies.map((h) => (
-          <div class="hobby-card tape-effect snap-center shrink-0 w-[85vw] max-w-[320px]">
+          <div class="hobby-card tape-effect snap-center shrink-0 w-[80vw] max-w-[320px]">
             <div class="hobby-icon">{h.icon}</div>
             <h3 class="hobby-title" data-i18n={h.titleKey}>{h.title}</h3>
             <p class="hobby-text" data-i18n={h.textKey}>{h.text}</p>

@@ -162,8 +162,9 @@ h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
 
 .hobby-icon { font-size: 4rem; margin-bottom: 1rem; filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.3)); }
 
-.hobby-carousel { scrollbar-width: none; -ms-overflow-style: none; }
+.hobby-carousel { scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
 .hobby-carousel::-webkit-scrollbar { display: none; }
+.hobby-carousel .hobby-card { overflow: visible; }
 .hobby-title { font-family: 'Racing Sans One', sans-serif; color: #ff006e; margin-bottom: 1rem; font-size: 2rem; transform: skewX(-5deg); }
 .hobby-text { color: #b0b0b0; line-height: 1.8; font-size: 1rem; }
 

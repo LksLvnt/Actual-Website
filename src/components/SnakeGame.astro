@@ -1,12 +1,23 @@
 ---
 ---
 <div id="game-overlay" class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center hidden">
-  <div class="text-center">
-    <div class="flex justify-between items-center w-[400px] mx-auto mb-2 font-display text-2xl text-accent">
+  <div class="text-center w-full max-w-[420px] px-4">
+    <div class="flex justify-between items-center mx-auto mb-2 font-display text-2xl text-accent">
       <span id="game-score">0</span>
       <button id="game-close" class="bg-transparent border-none text-primary text-3xl cursor-pointer hover:drop-shadow-[0_0_10px_#ff006e] leading-none">&times;</button>
     </div>
-    <canvas id="game-canvas" width="400" height="400" class="block mx-auto"></canvas>
-    <p class="font-display text-sm text-text-muted mt-2 tracking-widest">arrow keys to move</p>
+    <canvas id="game-canvas" width="400" height="400" class="block mx-auto w-full max-w-[400px] aspect-square"></canvas>
+    <p class="font-display text-sm text-text-muted mt-2 tracking-widest hidden md:block">arrow keys to move</p>
+    <div class="md:hidden mt-4 grid grid-cols-3 gap-2 max-w-[200px] mx-auto" id="game-touch-controls">
+      <div></div>
+      <button class="game-dpad bg-bg-alt border-2 border-accent text-accent font-display text-xl py-3 rounded active:bg-accent active:text-bg transition-colors" data-dir="up">▲</button>
+      <div></div>
+      <button class="game-dpad bg-bg-alt border-2 border-accent text-accent font-display text-xl py-3 rounded active:bg-accent active:text-bg transition-colors" data-dir="left">◄</button>
+      <button class="game-dpad bg-bg-alt border-2 border-primary text-primary font-display text-sm py-3 rounded active:bg-primary active:text-bg transition-colors" id="game-restart-touch">↻</button>
+      <button class="game-dpad bg-bg-alt border-2 border-accent text-accent font-display text-xl py-3 rounded active:bg-accent active:text-bg transition-colors" data-dir="right">►</button>
+      <div></div>
+      <button class="game-dpad bg-bg-alt border-2 border-accent text-accent font-display text-xl py-3 rounded active:bg-accent active:text-bg transition-colors" data-dir="down">▼</button>
+      <div></div>
+    </div>
   </div>
 </div>

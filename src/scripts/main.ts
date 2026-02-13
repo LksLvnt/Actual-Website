@@ -160,8 +160,10 @@ function applyTranslations() {
 async function setLanguage(lang: string) {
   currentLang = lang;
   localStorage.setItem("lang", lang);
-  const toggle = document.getElementById("lang-toggle");
-  if (toggle) toggle.textContent = lang === "en" ? "HU" : "EN";
+  const label = lang === "en" ? "HU" : "EN";
+  [document.getElementById("lang-toggle"), document.getElementById("lang-toggle-mobile")].forEach((t) => {
+    if (t) t.textContent = label;
+  });
   await loadTranslations(lang);
   applyTranslations();
   await loadProjects();
@@ -250,11 +252,37 @@ function initContactForm() {
 
 function initMobileMenu() {
   const btn = document.getElementById("mobile-menu-btn");
-  const menu = document.getElementById("nav-menu");
+  const menu = document.getElementById("nav-menu-mobile");
+  const lines = btn?.querySelectorAll(".burger-line");
+  let open = false;
+
   if (btn && menu) {
-    btn.addEventListener("click", () => menu.classList.toggle("!flex"));
-    document.querySelectorAll(".nav-link").forEach((l) => l.addEventListener("click", () => menu.classList.remove("!flex")));
+    btn.addEventListener("click", () => {
+      open = !open;
+      if (open) {
+        menu.style.maxHeight = menu.scrollHeight + "px";
+      } else {
+        menu.style.maxHeight = "0";
+      }
+      if (lines && lines.length === 3) {
+        lines[0].classList.toggle("translate-y-[9px]", open);
+        lines[0].classList.toggle("rotate-45", open);
+        lines[1].classList.toggle("opacity-0", open);
+        lines[2].classList.toggle("-translate-y-[9px]", open);
+        lines[2].classList.toggle("-rotate-45", open);
+      }
+    });
+    menu.querySelectorAll(".nav-link").forEach((l) => l.addEventListener("click", () => {
+      open = false;
+      menu.style.maxHeight = "0";
+      if (lines && lines.length === 3) {
+        lines[0].classList.remove("translate-y-[9px]", "rotate-45");
+        lines[1].classList.remove("opacity-0");
+        lines[2].classList.remove("-translate-y-[9px]", "-rotate-45");
+      }
+    }));
   }
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
       e.preventDefault();
@@ -454,6 +482,36 @@ function initSnakeGame() {
       else timer = setTimeout(() => { clicks = 0; }, 600) as unknown as number;
     });
   }
+
+  document.querySelectorAll<HTMLButtonElement>(".game-dpad[data-dir]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!running) return;
+      const dirs: Record<string,{x:number,y:number}> = { up:{x:0,y:-1}, down:{x:0,y:1}, left:{x:-1,y:0}, right:{x:1,y:0} };
+      const nd = dirs[btn.dataset.dir!];
+      if (nd && !(nd.x===-dir.x && nd.y===-dir.y)) nextDir = nd;
+    });
+  });
+
+  const restartTouch = document.getElementById("game-restart-touch");
+  if (restartTouch) restartTouch.addEventListener("click", () => { if (!running) start(); });
+
+  let touchStartX = 0, touchStartY = 0;
+  canvas.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  canvas.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
+    let nd: {x:number,y:number};
+    if (Math.abs(dx) > Math.abs(dy)) {
+      nd = dx > 0 ? {x:1,y:0} : {x:-1,y:0};
+    } else {
+      nd = dy > 0 ? {x:0,y:1} : {x:0,y:-1};
+    }
+    if (running && !(nd.x===-dir.x && nd.y===-dir.y)) nextDir = nd;
+  }, { passive: true });
 }
 
 async function init() {
@@ -464,11 +522,13 @@ async function init() {
   initContactForm();
   initKonamiCode();
   initSnakeGame();
-  const toggle = document.getElementById("lang-toggle");
-  if (toggle) {
-    toggle.textContent = currentLang === "en" ? "HU" : "EN";
-    toggle.addEventListener("click", () => setLanguage(currentLang === "en" ? "hu" : "en"));
-  }
+  const toggles = [document.getElementById("lang-toggle"), document.getElementById("lang-toggle-mobile")];
+  toggles.forEach((toggle) => {
+    if (toggle) {
+      toggle.textContent = currentLang === "en" ? "HU" : "EN";
+      toggle.addEventListener("click", () => setLanguage(currentLang === "en" ? "hu" : "en"));
+    }
+  });
   await loadTranslations(currentLang);
   applyTranslations();
   await loadProjects();
