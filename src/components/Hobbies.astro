@@ -4,13 +4,17 @@ const hobbies = [
   { icon: '🛹', titleKey: 'hobbies.skate_title', title: 'SKATING', textKey: 'hobbies.skate_text', text: "Street skating mostly. It's a good way to clear my head and stay active. Still working on new tricks.", stickerKey: 'sticker.skate', sticker: 'SKATE', stickerClass: 'sticker-2' },
   { icon: '🏐', titleKey: 'hobbies.volleyball_title', title: 'VOLLEYBALL', textKey: 'hobbies.volleyball_text', text: "Beach or indoor, doesn't matter. It's fun, it's team-based, and it keeps me moving.", stickerKey: 'sticker.spike', sticker: 'SPIKE', stickerClass: 'sticker-3' },
   { icon: '🎨', titleKey: 'hobbies.art_title', title: 'ART', textKey: 'hobbies.art_text', text: "I like messing around with visuals — digital stuff, doodles, whatever. Not a designer, just enjoy the process.", stickerKey: 'sticker.create', sticker: 'CREATE', stickerClass: 'sticker-4' },
+  { icon: '🎧', titleKey: 'hobbies.music_title', title: 'MUSIC', textKey: 'hobbies.music_text', text: "Always got something playing. Helps me focus when coding, keeps the energy up the rest of the time.", stickerKey: 'sticker.vibes', sticker: 'VIBES', stickerClass: 'sticker-1' },
+  { icon: '💪', titleKey: 'hobbies.gym_title', title: 'GYM', textKey: 'hobbies.gym_text', text: "Gotta balance out the hours at the desk. Lifting clears my head just as much as skating does.", stickerKey: 'sticker.grind', sticker: 'GRIND', stickerClass: 'sticker-2' },
+  { icon: '🎮', titleKey: 'hobbies.gaming_title', title: 'GAMING', textKey: 'hobbies.gaming_text', text: "Been playing games since forever. Mostly competitive stuff, but I'll dive into a good story too.", stickerKey: 'sticker.gg', sticker: 'GG', stickerClass: 'sticker-3' },
+  { icon: '🎬', titleKey: 'hobbies.movies_title', title: 'MOVIES', textKey: 'hobbies.movies_text', text: "Good way to wind down after a long day. Sci-fi, thrillers, or anything with a solid plot.", stickerKey: 'sticker.action', sticker: 'ACTION', stickerClass: 'sticker-4' },
 ];
 ---
 <section id="hobbies" class="min-h-screen py-24 relative overflow-hidden">
   <div class="max-w-[1200px] mx-auto px-8">
     <h2 class="section-title-hobbies mb-4" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
     <div class="accent-line mb-8"></div>
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 mt-12">
+    <div class="hidden md:grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 mt-12">
       {hobbies.map((h) => (
         <div class="hobby-card tape-effect">
           <div class="hobby-icon">{h.icon}</div>
@@ -19,6 +23,23 @@ const hobbies = [
           <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
         </div>
       ))}
+    </div>
+    <div class="md:hidden mt-12 relative">
+      <div class="hobby-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-8 px-8" id="hobby-carousel">
+        {hobbies.map((h) => (
+          <div class="hobby-card tape-effect snap-center shrink-0 w-[85vw] max-w-[320px]">
+            <div class="hobby-icon">{h.icon}</div>
+            <h3 class="hobby-title" data-i18n={h.titleKey}>{h.title}</h3>
+            <p class="hobby-text" data-i18n={h.textKey}>{h.text}</p>
+            <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
+          </div>
+        ))}
+      </div>
+      <div class="flex justify-center gap-2 mt-4" id="hobby-dots">
+        {hobbies.map((_, i) => (
+          <div class={`w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-6' : 'bg-text-muted/40'}`}></div>
+        ))}
+      </div>
     </div>
   </div>
   <div class="ramp-decoration ramp-left"></div>

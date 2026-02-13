@@ -60,6 +60,11 @@ const FALLBACK_TRANSLATIONS: Record<string, Record<string, string>> = {
     "contact.error": "Something went wrong. Try emailing me directly.",
     "footer.text": "© 2025 LOKOS LEVENTE. ALL RIGHTS RESERVED.",
     "sticker.fresh": "FRESH", "sticker.skate": "SKATE", "sticker.spike": "SPIKE", "sticker.create": "CREATE",
+    "sticker.vibes": "VIBES", "sticker.grind": "GRIND", "sticker.gg": "GG", "sticker.action": "ACTION",
+    "hobbies.music_title": "MUSIC", "hobbies.music_text": "Always got something playing. Helps me focus when coding, keeps the energy up the rest of the time.",
+    "hobbies.gym_title": "GYM", "hobbies.gym_text": "Gotta balance out the hours at the desk. Lifting clears my head just as much as skating does.",
+    "hobbies.gaming_title": "GAMING", "hobbies.gaming_text": "Been playing games since forever. Mostly competitive stuff, but I'll dive into a good story too.",
+    "hobbies.movies_title": "MOVIES", "hobbies.movies_text": "Good way to wind down after a long day. Sci-fi, thrillers, or anything with a solid plot.",
     "tech.title": "TECH STACK",
     "timeline.uni": "Started Programming Informatics BSc @ PTE TTK",
     "timeline.hok": "Elected student government representative (HÖK)",
@@ -99,6 +104,11 @@ const FALLBACK_TRANSLATIONS: Record<string, Record<string, string>> = {
     "contact.error": "Valami hiba történt. Próbálj meg közvetlenül e-mailt küldeni.",
     "footer.text": "© 2025 LOKOS LEVENTE. MINDEN JOG FENNTARTVA.",
     "sticker.fresh": "FRISS", "sticker.skate": "SKATE", "sticker.spike": "LECSAP", "sticker.create": "ALKOSS",
+    "sticker.vibes": "VIBES", "sticker.grind": "MELÓ", "sticker.gg": "GG", "sticker.action": "AKCIÓ",
+    "hobbies.music_title": "ZENE", "hobbies.music_text": "Mindig szól valami. Kódoláshoz segít fókuszálni, egyébként meg tartja az energiát.",
+    "hobbies.gym_title": "EDZÉS", "hobbies.gym_text": "Ki kell egyensúlyozni az íróasztalnál töltött órákat. A súlyzózás ugyanúgy kitisztítja a fejem mint a gördeszka.",
+    "hobbies.gaming_title": "GAMING", "hobbies.gaming_text": "Gyerekkorom óta játszom. Főleg kompetitív cuccok, de egy jó sztoriba is belemegyek.",
+    "hobbies.movies_title": "FILMEK", "hobbies.movies_text": "Jó módja annak, hogy lenyugodjak egy hosszú nap után. Sci-fi, thriller, vagy bármi amiben van egy jó sztori.",
     "tech.title": "TECH STACK",
     "timeline.uni": "Programtervező informatikus BSc elkezdése @ PTE TTK",
     "timeline.hok": "HÖK képviselővé választás",
@@ -308,7 +318,27 @@ function initHeroParallax() {
   });
 }
 
+function initHobbyCarousel() {
+  const carousel = document.getElementById("hobby-carousel");
+  const dots = document.querySelectorAll("#hobby-dots > div");
+  if (!carousel || !dots.length) return;
+  carousel.addEventListener("scroll", () => {
+    const scrollLeft = carousel.scrollLeft;
+    const cardWidth = carousel.firstElementChild?.clientWidth || 280;
+    const gap = 24;
+    const index = Math.round(scrollLeft / (cardWidth + gap));
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.className = "w-6 h-2 rounded-full bg-primary transition-all";
+      } else {
+        dot.className = "w-2 h-2 rounded-full bg-text-muted/40 transition-all";
+      }
+    });
+  });
+}
+
 function initScrollReveal() {
+  initHobbyCarousel();
   document.querySelectorAll(
     "h2, .grid > div, blockquote, form, .accent-line, .space-y-3 > li"
   ).forEach((el) => el.classList.add("reveal"));
