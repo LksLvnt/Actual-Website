@@ -50,7 +50,7 @@ const FALLBACK_TRANSLATIONS = {
     "sticker.fresh": "FRESH", "sticker.skate": "SKATE",
     "sticker.spike": "SPIKE", "sticker.create": "CREATE",
     "tech.title": "TECH STACK",
-    "timeline.uni": "Started  Computer Science BSc @ PTE TTK",
+    "timeline.uni": "Started Computer Science BSc @ PTE TTK",
     "timeline.hok": "Elected student government representative (HÖK)",
     "timeline.spring": "Built library management system with Spring Boot",
     "timeline.assembly": "Assembly programming - disk sector reader in DOSBox",
@@ -58,6 +58,8 @@ const FALLBACK_TRANSLATIONS = {
     "timeline.portfolio": "Built this portfolio with Express + SQLite backend",
     "timeline.telekom": "Worked at Magyar Telekom over the summer",
     "about.timeline_title": "TIMELINE",
+    "quote.text": "\"First, solve the problem. Then, write the code.\"",
+    "quote.author": "- John Johnson",
   },
   hu: {
     "nav.home": "Főoldal", "nav.about": "Rólam", "nav.hobbies": "Hobbik",
@@ -100,6 +102,8 @@ const FALLBACK_TRANSLATIONS = {
     "timeline.portfolio": "Portfólió oldal Express + SQLite backend-del",
     "timeline.telekom": "Nyári munka a Magyar Telekomnál",
     "about.timeline_title": "IDŐVONAL",
+    "quote.text": "\"Először oldd meg a problémát. Aztán írd meg a kódot.\"",
+    "quote.author": "- John Johnson",
   },
 };
 let currentLang = localStorage.getItem("lang") || "en";
@@ -235,7 +239,7 @@ function initMobileMenu() {
 }
 function initScrollAnimations() {
   document.querySelectorAll(
-    ".section-title, .about-col, .hobby-card, .card, .timeline-item, .tech-item, .contact-form, .contact-intro, .accent-line, .social-links"
+    ".section-title, .about-col, .hobby-card, .card, .timeline-center-item, .tech-item, .contact-form, .contact-intro, .accent-line, .social-links, .quote"
   ).forEach((el) => el.classList.add("reveal"));
   const observer = new IntersectionObserver(
     (entries) => {
@@ -283,7 +287,6 @@ function initTypingEffect() {
   }
   setTimeout(type, 800);
 }
-
 function initParallax() {
   const hero = document.querySelector(".hero");
   const decoration = document.querySelector("[data-parallax]");
