@@ -522,6 +522,7 @@ async function init() {
   initContactForm();
   initKonamiCode();
   initSnakeGame();
+  import('./keyboard3d').then(({ initKeyboard }) => initKeyboard());
   const toggles = [document.getElementById("lang-toggle"), document.getElementById("lang-toggle-mobile")];
   toggles.forEach((toggle) => {
     if (toggle) {

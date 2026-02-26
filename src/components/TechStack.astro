@@ -19,21 +19,15 @@ const techs = [
   { name: 'Docker', icon: 'docker/docker-original' },
 ];
 ---
-<section class="min-h-screen py-24 bg-bg-alt">
-  <div class="max-w-[1200px] mx-auto px-8">
-    <h2 class="font-chunky text-[clamp(2rem,5vw,3.5rem)] text-accent [text-shadow:2px_2px_0_#ff006e] mb-4" data-i18n="tech.title">TECH STACK</h2>
-    <div class="accent-line mb-8"></div>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-8 max-w-[900px]">
-      {techs.map((t) => (
-        <div class="flex flex-col items-center gap-2 group transition-transform hover:-translate-y-1">
-          <img
-            src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${t.icon}.svg`}
-            alt={t.name}
-            class="w-12 h-12 grayscale brightness-[0.8] group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-300"
-          />
-          <span class="font-display text-sm text-text-muted group-hover:text-text tracking-wider text-center transition-colors">{t.name}</span>
-        </div>
-      ))}
+<section id="tech" class="relative bg-bg-alt">
+  <div class="h-[200vh] relative" id="keyboard-scroll-area">
+    <div class="sticky top-0 h-screen overflow-hidden" id="keyboard-sticky">
+      <div class="max-w-[1200px] mx-auto px-8 pt-24">
+        <h2 class="font-chunky text-[clamp(2rem,5vw,3.5rem)] text-accent [text-shadow:2px_2px_0_#ff006e] mb-2" data-i18n="tech.title">TECH STACK</h2>
+        <div class="accent-line mb-4"></div>
+      </div>
+      <div class="w-full h-[calc(100vh-140px)]" id="keyboard-container"></div>
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-sm text-text-muted/40 tracking-widest pointer-events-none" id="hovered-key-label"></div>
     </div>
   </div>
 </section>
