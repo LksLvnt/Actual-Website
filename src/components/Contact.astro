@@ -7,13 +7,18 @@
       <span data-i18n="contact.title1">Let's</span> <span class="text-[var(--accent)] italic" data-i18n="contact.title2">Connect</span>
     </h2>
     <p class="font-sans text-base md:text-lg text-[var(--text-muted)] mb-12 leading-relaxed" data-i18n="contact.subtitle">Have a project idea, a question, or just want to say hi? I'd love to hear from you.</p>
-    <form class="space-y-8 text-left" id="contact-form">
-      <div><input type="text" class="contact-input" data-i18n-placeholder="contact.name" placeholder="Your Name" required /></div>
-      <div><input type="email" class="contact-input" data-i18n-placeholder="contact.email" placeholder="Your Email" required /></div>
-      <div><textarea rows="4" class="contact-input resize-none" data-i18n-placeholder="contact.message" placeholder="Your Message" required></textarea></div>
+    <form class="space-y-8 text-left" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="123f8199-992c-4224-94f7-65983a90f355" />
+      <input type="hidden" name="subject" value="New message from lokoslevente.com" />
+      <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+      <input type="checkbox" name="botcheck" class="hidden" />
+      <div><input type="text" name="name" class="contact-input" data-i18n-placeholder="contact.name" placeholder="Your Name" required /></div>
+      <div><input type="email" name="email" class="contact-input" data-i18n-placeholder="contact.email" placeholder="Your Email" required /></div>
+      <div><textarea rows="4" name="message" class="contact-input resize-none" data-i18n-placeholder="contact.message" placeholder="Your Message" required></textarea></div>
       <div class="text-center">
-        <button type="submit" class="px-10 py-4 bg-[var(--accent)] text-[var(--bg)] font-sans text-xs font-semibold tracking-[0.1em] uppercase rounded-[4px] bloom-shadow transition-all duration-300 hover:bg-[var(--accent-light)]" data-i18n="contact.send">Send Message</button>
+        <button type="submit" id="contact-submit" class="px-10 py-4 bg-[var(--accent)] text-[var(--bg)] font-sans text-xs font-semibold tracking-[0.1em] uppercase rounded-[4px] bloom-shadow transition-all duration-300 hover:bg-[var(--accent-light)]" data-i18n="contact.send">Send Message</button>
       </div>
+      <div id="form-status" class="hidden"></div>
     </form>
   </div>
 </section>

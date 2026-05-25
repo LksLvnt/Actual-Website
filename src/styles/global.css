@@ -21,7 +21,10 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
 body {
   font-family: 'Geist', system-ui, sans-serif;
   background-color: var(--bg);
@@ -183,3 +186,22 @@ body {
 }
 
 .bg-alt { background-color: var(--bg-alt); }
+
+.form-status {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 1rem;
+}
+.form-status.success {
+  background: rgba(184, 196, 160, 0.15);
+  color: var(--highlight);
+  border: 1px solid rgba(184, 196, 160, 0.2);
+}
+.form-status.error {
+  background: rgba(196, 144, 117, 0.15);
+  color: var(--warm);
+  border: 1px solid rgba(196, 144, 117, 0.2);
+}

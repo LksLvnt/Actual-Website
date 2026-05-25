@@ -23,7 +23,29 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
+  import Lenis from 'lenis';
   import { translations } from '../scripts/i18n';
+
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: (t: number) => 1 - Math.pow(1 - t, 4),
+    smoothWheel: true,
+  });
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = (anchor as HTMLAnchorElement).getAttribute('href')!;
+      const target = document.querySelector(id);
+      if (target) lenis.scrollTo(target as HTMLElement, { offset: -80 });
+    });
+  });
 
   let currentLang = (localStorage.getItem('lang') as 'en' | 'hu') || 'en';
 
@@ -71,5 +93,47 @@ import Footer from '../components/Footer.astro';
       (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.05}s`;
       observer.observe(el);
     });
+
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const status = document.getElementById('form-status') as HTMLElement | null;
+    const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null;
+
+    if (form && status && submitBtn) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = '...';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            status.className = 'form-status success';
+            status.textContent = currentLang === 'hu'
+              ? 'Üzenet elküldve! Hamarosan válaszolok.'
+              : 'Message sent! I\'ll get back to you soon.';
+            status.classList.remove('hidden');
+            form.reset();
+          } else {
+            throw new Error('Failed');
+          }
+        } catch {
+          status.className = 'form-status error';
+          status.textContent = currentLang === 'hu'
+            ? 'Hiba történt. Próbáld újra később.'
+            : 'Something went wrong. Please try again.';
+          status.classList.remove('hidden');
+        }
+
+        submitBtn.disabled = false;
+        applyLanguage(currentLang);
+
+        setTimeout(() => status.classList.add('hidden'), 5000);
+      });
+    }
   });
 </script>
