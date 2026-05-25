@@ -1,0 +1,26 @@
+---
+const events = [
+  { key: '1', side: 'right' },
+  { key: '2', side: 'left' },
+  { key: '3', side: 'right' },
+];
+---
+<section class="py-28 md:py-40 px-5 md:px-20 max-w-[1440px] mx-auto bg-alt" id="timeline">
+  <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-4" data-i18n="timeline.label">Journey</p>
+  <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
+    <span data-i18n="timeline.title1">My</span> <span class="text-[var(--accent)] italic" data-i18n="timeline.title2">Timeline</span>
+  </h2>
+  <div class="relative pl-10 md:pl-0">
+    <div class="absolute left-3 md:left-1/2 top-0 bottom-0 w-[2px] bg-[var(--accent)]/20 md:-translate-x-[1px]"></div>
+    {events.map((ev) => (
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class:list={['timeline-content', ev.side === 'left' ? 'md:mr-[55%] md:text-right' : 'md:ml-[55%]']}>
+          <span class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)]" data-i18n={`timeline.${ev.key}.year`}></span>
+          <h3 class="font-serif text-lg md:text-xl font-semibold text-[var(--text)] mt-2" data-i18n={`timeline.${ev.key}.title`}></h3>
+          <p class="font-sans text-sm text-[var(--text-muted)] mt-2 leading-relaxed" data-i18n={`timeline.${ev.key}.desc`}></p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,33 +1,23 @@
 ---
-const techs = [
-  { name: 'JavaScript', icon: 'javascript/javascript-original' },
-  { name: 'TypeScript', icon: 'typescript/typescript-original' },
-  { name: 'Python', icon: 'python/python-original' },
-  { name: 'Java', icon: 'java/java-original' },
-  { name: 'C#', icon: 'csharp/csharp-original' },
-  { name: 'C', icon: 'c/c-original' },
-  { name: 'C++', icon: 'cplusplus/cplusplus-original' },
-  { name: 'HTML', icon: 'html5/html5-original' },
-  { name: 'CSS', icon: 'css3/css3-original' },
-  { name: 'Angular', icon: 'angular/angular-original' },
-  { name: 'Spring', icon: 'spring/spring-original' },
-  { name: 'Node.js', icon: 'nodejs/nodejs-original' },
-  { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
-  { name: 'MySQL', icon: 'mysql/mysql-original' },
-  { name: 'Linux', icon: 'linux/linux-original' },
-  { name: 'Git', icon: 'git/git-original' },
-  { name: 'Docker', icon: 'docker/docker-original' },
+const categories = [
+  { key: 'cat1', items: ['C#', 'C', 'C++', 'Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Assembly', 'HTML/CSS'] },
+  { key: 'cat2', items: ['Angular', 'Astro', 'React', 'Spring Boot', '.NET', 'FastAPI', 'Tailwind CSS', 'Node.js'] },
+  { key: 'cat3', items: ['Git', 'Docker', 'Linux', 'PostgreSQL', 'Supabase', 'Vercel', 'Three.js'] },
 ];
 ---
-<section id="tech" class="relative bg-bg-alt">
-  <div class="h-[200vh] relative" id="keyboard-scroll-area">
-    <div class="sticky top-0 h-screen overflow-hidden" id="keyboard-sticky">
-      <div class="max-w-[1200px] mx-auto px-8 pt-24">
-        <h2 class="font-chunky text-[clamp(2rem,5vw,3.5rem)] text-accent [text-shadow:2px_2px_0_#ff006e] mb-2" data-i18n="tech.title">TECH STACK</h2>
-        <div class="accent-line mb-4"></div>
+<section class="py-28 md:py-40 px-5 md:px-20 max-w-[1440px] mx-auto" id="tech">
+  <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)]/60 mb-4" data-i18n="tech.label">Toolbox</p>
+  <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
+    <span data-i18n="tech.title1">Tech</span> <span class="text-[var(--accent)] italic" data-i18n="tech.title2">Stack</span>
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    {categories.map((cat) => (
+      <div>
+        <h3 class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-6" data-i18n={`tech.${cat.key}`}></h3>
+        <div class="flex flex-wrap gap-3">
+          {cat.items.map((item) => <span class="tech-chip">{item}</span>)}
+        </div>
       </div>
-      <div class="w-full h-[calc(100vh-140px)]" id="keyboard-container"></div>
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 font-display text-sm text-text-muted/40 tracking-widest pointer-events-none" id="hovered-key-label"></div>
-    </div>
+    ))}
   </div>
 </section>

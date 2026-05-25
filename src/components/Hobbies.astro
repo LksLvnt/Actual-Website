@@ -1,47 +1,27 @@
 ---
 const hobbies = [
-  { icon: '☕', titleKey: 'hobbies.coffee_title', title: 'COFFEE', textKey: 'hobbies.coffee_text', text: "Can't start the day without it. I like trying different beans and brewing methods — pour-over, cold brew, whatever works.", stickerKey: 'sticker.fresh', sticker: 'FRESH', stickerClass: 'sticker-1' },
-  { icon: '🛹', titleKey: 'hobbies.skate_title', title: 'SKATING', textKey: 'hobbies.skate_text', text: "Street skating mostly. It's a good way to clear my head and stay active. Still working on new tricks.", stickerKey: 'sticker.skate', sticker: 'SKATE', stickerClass: 'sticker-2' },
-  { icon: '🏐', titleKey: 'hobbies.volleyball_title', title: 'VOLLEYBALL', textKey: 'hobbies.volleyball_text', text: "Beach or indoor, doesn't matter. It's fun, it's team-based, and it keeps me moving.", stickerKey: 'sticker.spike', sticker: 'SPIKE', stickerClass: 'sticker-3' },
-  { icon: '🎨', titleKey: 'hobbies.art_title', title: 'ART', textKey: 'hobbies.art_text', text: "I like messing around with visuals — digital stuff, doodles, whatever. Not a designer, just enjoy the process.", stickerKey: 'sticker.create', sticker: 'CREATE', stickerClass: 'sticker-4' },
-  { icon: '🎧', titleKey: 'hobbies.music_title', title: 'MUSIC', textKey: 'hobbies.music_text', text: "Always got something playing. Helps me focus when coding, keeps the energy up the rest of the time.", stickerKey: 'sticker.vibes', sticker: 'VIBES', stickerClass: 'sticker-1' },
-  { icon: '💪', titleKey: 'hobbies.gym_title', title: 'GYM', textKey: 'hobbies.gym_text', text: "Gotta balance out the hours at the desk. Lifting clears my head just as much as skating does.", stickerKey: 'sticker.grind', sticker: 'GRIND', stickerClass: 'sticker-2' },
-  { icon: '🎮', titleKey: 'hobbies.gaming_title', title: 'GAMING', textKey: 'hobbies.gaming_text', text: "Been playing games since forever. Mostly competitive stuff, but I'll dive into a good story too.", stickerKey: 'sticker.gg', sticker: 'GG', stickerClass: 'sticker-3' },
-  { icon: '🎬', titleKey: 'hobbies.movies_title', title: 'MOVIES', textKey: 'hobbies.movies_text', text: "Good way to wind down after a long day. Sci-fi, thrillers, or anything with a solid plot.", stickerKey: 'sticker.action', sticker: 'ACTION', stickerClass: 'sticker-4' },
+  { key: 'coffee', icon: '<path d="M17 8h1a4 4 0 110 8h-1"/><path d="M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/>' },
+  { key: 'skating', icon: '<path d="M2 15h4l3-9 6 15 3-6h4"/>' },
+  { key: 'volleyball', icon: '<circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M9.17 14.83l-4.24 4.24"/><circle cx="12" cy="12" r="4"/>' },
+  { key: 'art', icon: '<path d="M12 20a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 5z"/>' },
+  { key: 'music', icon: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>' },
+  { key: 'gym', icon: '<path d="M6.5 6.5L17.5 17.5"/><path d="M7 2l-1.5 5L2 7"/><path d="M17 22l1.5-5 3.5 0"/><path d="M22 7l-5-1.5L17 2"/><path d="M2 17l5 1.5L7 22"/>' },
+  { key: 'gaming', icon: '<line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/>' },
+  { key: 'movies', icon: '<rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/>' },
 ];
 ---
-<section id="hobbies" class="min-h-screen py-24 relative overflow-hidden">
-  <div class="max-w-[1200px] mx-auto px-8">
-    <h2 class="section-title-hobbies mb-4" data-i18n="hobbies.title">WHEN I'M NOT CODING</h2>
-    <div class="accent-line mb-8"></div>
-    <div class="hidden md:grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 mt-12">
-      {hobbies.map((h) => (
-        <div class="hobby-card tape-effect">
-          <div class="hobby-icon">{h.icon}</div>
-          <h3 class="hobby-title" data-i18n={h.titleKey}>{h.title}</h3>
-          <p class="hobby-text" data-i18n={h.textKey}>{h.text}</p>
-          <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
-        </div>
-      ))}
-    </div>
-    <div class="md:hidden mt-12 relative">
-      <div class="hobby-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-8 px-8 pt-4" id="hobby-carousel" data-lenis-prevent>
-        {hobbies.map((h) => (
-          <div class="hobby-card tape-effect snap-center shrink-0 w-[80vw] max-w-[320px]">
-            <div class="hobby-icon">{h.icon}</div>
-            <h3 class="hobby-title" data-i18n={h.titleKey}>{h.title}</h3>
-            <p class="hobby-text" data-i18n={h.textKey}>{h.text}</p>
-            <div class={`sticker ${h.stickerClass}`} data-i18n={h.stickerKey}>{h.sticker}</div>
-          </div>
-        ))}
+<section class="py-28 md:py-40 px-5 md:px-20 max-w-[1440px] mx-auto" id="hobbies">
+  <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-4" data-i18n="hobbies.label">Beyond Code</p>
+  <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
+    <span data-i18n="hobbies.title1">When I'm</span> <span class="text-[var(--accent)] italic" data-i18n="hobbies.title2">Not Coding</span>
+  </h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    {hobbies.map((h) => (
+      <div class="hobby-card group">
+        <svg class="hobby-icon w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 md:mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={h.icon}></svg>
+        <h3 class="font-serif text-lg md:text-xl font-semibold text-[var(--text)] mb-1 md:mb-2" data-i18n={`hobbies.${h.key}`}></h3>
+        <p class="font-sans text-xs md:text-sm text-[var(--text-muted)] leading-relaxed" data-i18n={`hobbies.${h.key}.desc`}></p>
       </div>
-      <div class="flex justify-center gap-2 mt-4" id="hobby-dots">
-        {hobbies.map((_, i) => (
-          <div class={`w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-6' : 'bg-text-muted/40'}`}></div>
-        ))}
-      </div>
-    </div>
+    ))}
   </div>
-  <div class="ramp-decoration ramp-left"></div>
-  <div class="ramp-decoration ramp-right"></div>
 </section>

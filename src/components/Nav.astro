@@ -1,34 +1,28 @@
 ---
 ---
-<nav class="fixed top-0 left-0 right-0 z-50 bg-bg/90 backdrop-blur-md border-b-2 border-primary">
-  <div class="max-w-[1200px] mx-auto flex justify-between items-center px-6 py-4">
-    <a href="#home" class="logo-link group">
-      <img src="/favicon.png" alt="Logo" class="h-[50px] w-auto drop-shadow-[0_0_10px_rgba(0,245,255,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(255,0,110,0.8)] group-hover:scale-105 transition-all duration-300" id="logo-img">
-    </a>
-    <div class="flex items-center gap-4 md:hidden">
-      <button class="bg-transparent border-2 border-accent text-accent font-display text-base px-3 py-1 cursor-pointer tracking-widest hover:bg-accent hover:text-bg transition-all" id="lang-toggle-mobile">HU</button>
-      <button class="flex flex-col justify-center items-center w-10 h-10 bg-transparent border-none cursor-pointer gap-[6px]" id="mobile-menu-btn" aria-label="Toggle menu">
-        <span class="burger-line w-7 h-[3px] bg-text transition-all duration-300 origin-center"></span>
-        <span class="burger-line w-7 h-[3px] bg-text transition-all duration-300 origin-center"></span>
-        <span class="burger-line w-7 h-[3px] bg-text transition-all duration-300 origin-center"></span>
+<nav class="fixed top-0 w-full z-50 nav-glass border-b border-white/[0.06]">
+  <div class="flex justify-between items-center h-20 px-5 md:px-20 max-w-[1440px] mx-auto">
+    <a class="font-serif text-xl md:text-2xl font-semibold text-[var(--text)] tracking-tight" href="#">LEVENTE LOKOS</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="nav-link" href="#work" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="#tech" data-i18n="nav.tech">Tech</a>
+      <a class="nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a>
+      <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+      <button id="lang-toggle" class="font-sans text-xs font-semibold tracking-[0.1em] uppercase text-[var(--accent)] hover:text-[var(--accent-light)] transition-colors cursor-pointer">HU</button>
+    </div>
+    <div class="flex md:hidden items-center gap-3">
+      <button id="lang-toggle-mobile" class="font-sans text-xs font-semibold tracking-[0.1em] uppercase text-[var(--accent)] hover:text-[var(--accent-light)] transition-colors cursor-pointer">HU</button>
+      <button id="mobile-menu-btn" class="text-[var(--text)] p-2" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <ul class="hidden md:flex gap-8 list-none items-center" id="nav-menu-desktop">
-      <li><a href="#home" class="nav-link text-text no-underline font-display text-xl uppercase tracking-widest hover:text-primary hover:drop-shadow-[0_0_10px_#ff006e] transition-all" data-i18n="nav.home">Home</a></li>
-      <li><a href="#about" class="nav-link text-text no-underline font-display text-xl uppercase tracking-widest hover:text-primary hover:drop-shadow-[0_0_10px_#ff006e] transition-all" data-i18n="nav.about">About</a></li>
-      <li><a href="#hobbies" class="nav-link text-text no-underline font-display text-xl uppercase tracking-widest hover:text-primary hover:drop-shadow-[0_0_10px_#ff006e] transition-all" data-i18n="nav.hobbies">Hobbies</a></li>
-      <li><a href="#work" class="nav-link text-text no-underline font-display text-xl uppercase tracking-widest hover:text-primary hover:drop-shadow-[0_0_10px_#ff006e] transition-all" data-i18n="nav.work">Work</a></li>
-      <li><a href="#contact" class="nav-link text-text no-underline font-display text-xl uppercase tracking-widest hover:text-primary hover:drop-shadow-[0_0_10px_#ff006e] transition-all" data-i18n="nav.contact">Contact</a></li>
-      <li><button class="bg-transparent border-2 border-accent text-accent font-display text-base px-3 py-1 cursor-pointer tracking-widest hover:bg-accent hover:text-bg transition-all" id="lang-toggle">HU</button></li>
-    </ul>
   </div>
-  <div class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out" id="nav-menu-mobile">
-    <ul class="flex flex-col items-center gap-6 py-8 list-none border-t border-white/10">
-      <li><a href="#home" class="nav-link text-text no-underline font-display text-2xl uppercase tracking-widest hover:text-primary transition-all" data-i18n="nav.home">Home</a></li>
-      <li><a href="#about" class="nav-link text-text no-underline font-display text-2xl uppercase tracking-widest hover:text-primary transition-all" data-i18n="nav.about">About</a></li>
-      <li><a href="#hobbies" class="nav-link text-text no-underline font-display text-2xl uppercase tracking-widest hover:text-primary transition-all" data-i18n="nav.hobbies">Hobbies</a></li>
-      <li><a href="#work" class="nav-link text-text no-underline font-display text-2xl uppercase tracking-widest hover:text-primary transition-all" data-i18n="nav.work">Work</a></li>
-      <li><a href="#contact" class="nav-link text-text no-underline font-display text-2xl uppercase tracking-widest hover:text-primary transition-all" data-i18n="nav.contact">Contact</a></li>
-    </ul>
+  <div id="mobile-menu" class="hidden md:hidden px-5 pb-6 space-y-1">
+    <a class="block py-3 nav-link" href="#work" data-i18n="nav.work">Work</a>
+    <a class="block py-3 nav-link" href="#tech" data-i18n="nav.tech">Tech</a>
+    <a class="block py-3 nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a>
+    <a class="block py-3 nav-link" href="#about" data-i18n="nav.about">About</a>
+    <a class="block py-3 nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </nav>
