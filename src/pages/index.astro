@@ -40,55 +40,122 @@ import Footer from '../components/Footer.astro';
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
-      e.preventDefault();
       const id = (anchor as HTMLAnchorElement).getAttribute('href')!;
+      if (id === '#') return;
       const target = document.querySelector(id);
-      if (target) lenis.scrollTo(target as HTMLElement, { offset: -80 });
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target as HTMLElement, { offset: -80 });
+        const menu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('mobile-menu-btn');
+        if (menu && btn) {
+          menu.style.maxHeight = '0';
+          menu.classList.remove('mobile-menu-open');
+          btn.classList.remove('burger-open');
+        }
+      }
     });
   });
 
   let currentLang = (localStorage.getItem('lang') as 'en' | 'hu') || 'en';
 
-  function applyLanguage(lang: 'en' | 'hu') {
+  function applyLanguage(lang: 'en' | 'hu', animate = false) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
     const t = translations[lang];
 
-    document.querySelectorAll('[data-i18n]').forEach((el) => {
-      const key = el.getAttribute('data-i18n')!;
-      if (t[key]) el.textContent = t[key];
-    });
+    const i18nEls = document.querySelectorAll('[data-i18n]');
+    const placeholderEls = document.querySelectorAll('[data-i18n-placeholder]');
 
-    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
-      const key = el.getAttribute('data-i18n-placeholder')!;
-      if (t[key]) (el as HTMLInputElement).placeholder = t[key];
-    });
+    if (animate) {
+      i18nEls.forEach((el) => el.classList.add('i18n-fade'));
 
-    const toggles = [document.getElementById('lang-toggle'), document.getElementById('lang-toggle-mobile')];
-    toggles.forEach((btn) => {
-      if (btn) btn.textContent = lang === 'en' ? 'HU' : 'EN';
-    });
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.classList.add('switching');
+        btn.classList.remove('switching-in');
+      });
+
+      setTimeout(() => {
+        i18nEls.forEach((el) => {
+          const key = el.getAttribute('data-i18n')!;
+          if (t[key]) el.textContent = t[key];
+          el.classList.remove('i18n-fade');
+        });
+        placeholderEls.forEach((el) => {
+          const key = el.getAttribute('data-i18n-placeholder')!;
+          if (t[key]) (el as HTMLInputElement).placeholder = t[key];
+        });
+
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+          btn.classList.remove('switching');
+          btn.classList.add('switching-in');
+          const inner = btn.querySelector('.lang-btn-inner');
+          if (inner) inner.textContent = lang === 'en' ? 'HU' : 'EN';
+        });
+
+        setTimeout(() => {
+          document.querySelectorAll('.lang-btn').forEach((btn) => btn.classList.remove('switching-in'));
+        }, 350);
+      }, 200);
+    } else {
+      i18nEls.forEach((el) => {
+        const key = el.getAttribute('data-i18n')!;
+        if (t[key]) el.textContent = t[key];
+      });
+      placeholderEls.forEach((el) => {
+        const key = el.getAttribute('data-i18n-placeholder')!;
+        if (t[key]) (el as HTMLInputElement).placeholder = t[key];
+      });
+      document.querySelectorAll('.lang-btn .lang-btn-inner').forEach((inner) => {
+        inner.textContent = lang === 'en' ? 'HU' : 'EN';
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    applyLanguage(currentLang);
+    applyLanguage(currentLang, false);
 
     [document.getElementById('lang-toggle'), document.getElementById('lang-toggle-mobile')].forEach((btn) => {
-      if (btn) btn.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'hu' : 'en'));
+      if (btn) btn.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'hu' : 'en', true));
     });
 
     const menuBtn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+
     if (menuBtn && menu) {
-      menuBtn.addEventListener('click', () => menu.classList.toggle('hidden'));
-      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+      menuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        menuBtn.classList.toggle('burger-open', menuOpen);
+        if (menuOpen) {
+          menu.style.maxHeight = menu.scrollHeight + 'px';
+          menu.classList.add('mobile-menu-open');
+        } else {
+          menu.style.maxHeight = '0';
+          menu.classList.remove('mobile-menu-open');
+        }
+      });
+    }
+
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 50) {
+          nav.classList.add('nav-scrolled');
+        } else {
+          nav.classList.remove('nav-scrolled');
+        }
+        lastScroll = y;
+      }, { passive: true });
     }
 
     const observer = new IntersectionObserver(
       (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); },
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-    document.querySelectorAll('section > div, section > .grid, .project-card, .hobby-card, .timeline-item, h2, form, .timeline-content').forEach((el, i) => {
+    document.querySelectorAll('section > div, section > .grid, .project-card, .hobby-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
       el.classList.add('reveal');
       (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.05}s`;
       observer.observe(el);
@@ -105,33 +172,22 @@ import Footer from '../components/Footer.astro';
         submitBtn.textContent = '...';
 
         try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-          });
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
           const data = await res.json();
-
           if (data.success) {
             status.className = 'form-status success';
-            status.textContent = currentLang === 'hu'
-              ? 'Üzenet elküldve! Hamarosan válaszolok.'
-              : 'Message sent! I\'ll get back to you soon.';
+            status.textContent = currentLang === 'hu' ? 'Üzenet elküldve! Hamarosan válaszolok.' : 'Message sent! I\'ll get back to you soon.';
             status.classList.remove('hidden');
             form.reset();
-          } else {
-            throw new Error('Failed');
-          }
+          } else { throw new Error('Failed'); }
         } catch {
           status.className = 'form-status error';
-          status.textContent = currentLang === 'hu'
-            ? 'Hiba történt. Próbáld újra később.'
-            : 'Something went wrong. Please try again.';
+          status.textContent = currentLang === 'hu' ? 'Hiba történt. Próbáld újra később.' : 'Something went wrong. Please try again.';
           status.classList.remove('hidden');
         }
 
         submitBtn.disabled = false;
-        applyLanguage(currentLang);
-
+        applyLanguage(currentLang, false);
         setTimeout(() => status.classList.add('hidden'), 5000);
       });
     }

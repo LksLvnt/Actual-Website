@@ -1,28 +1,36 @@
 ---
 ---
-<nav class="fixed top-0 w-full z-50 nav-glass border-b border-white/[0.06]">
+<nav id="main-nav" class="fixed top-0 w-full z-50 nav-glass border-b border-white/[0.06] transition-all duration-500">
   <div class="flex justify-between items-center h-20 px-5 md:px-20 max-w-[1440px] mx-auto">
-    <a class="font-serif text-xl md:text-2xl font-semibold text-[var(--text)] tracking-tight" href="#">LEVENTE LOKOS</a>
+    <a class="font-serif text-xl md:text-2xl font-semibold text-[var(--text)] tracking-tight hover:text-[var(--accent)] transition-colors duration-300" href="#">LEVENTE LOKOS</a>
     <div class="hidden md:flex items-center gap-8">
-      <a class="nav-link" href="#work" data-i18n="nav.work">Work</a>
-      <a class="nav-link" href="#tech" data-i18n="nav.tech">Tech</a>
-      <a class="nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a>
-      <a class="nav-link" href="#about" data-i18n="nav.about">About</a>
-      <a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
-      <button id="lang-toggle" class="font-sans text-xs font-semibold tracking-[0.1em] uppercase text-[var(--accent)] hover:text-[var(--accent-light)] transition-colors cursor-pointer">HU</button>
+      <a class="nav-link-anim" href="#work" data-i18n="nav.work">Work</a>
+      <a class="nav-link-anim" href="#tech" data-i18n="nav.tech">Tech</a>
+      <a class="nav-link-anim" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a>
+      <a class="nav-link-anim" href="#about" data-i18n="nav.about">About</a>
+      <a class="nav-link-anim" href="#contact" data-i18n="nav.contact">Contact</a>
+      <button id="lang-toggle" class="lang-btn" aria-label="Toggle language">
+        <span class="lang-btn-inner">HU</span>
+      </button>
     </div>
     <div class="flex md:hidden items-center gap-3">
-      <button id="lang-toggle-mobile" class="font-sans text-xs font-semibold tracking-[0.1em] uppercase text-[var(--accent)] hover:text-[var(--accent-light)] transition-colors cursor-pointer">HU</button>
-      <button id="mobile-menu-btn" class="text-[var(--text)] p-2" aria-label="Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <button id="lang-toggle-mobile" class="lang-btn" aria-label="Toggle language">
+        <span class="lang-btn-inner">HU</span>
+      </button>
+      <button id="mobile-menu-btn" class="relative w-10 h-10 flex items-center justify-center" aria-label="Menu">
+        <span class="burger-line burger-line-1"></span>
+        <span class="burger-line burger-line-2"></span>
+        <span class="burger-line burger-line-3"></span>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden px-5 pb-6 space-y-1">
-    <a class="block py-3 nav-link" href="#work" data-i18n="nav.work">Work</a>
-    <a class="block py-3 nav-link" href="#tech" data-i18n="nav.tech">Tech</a>
-    <a class="block py-3 nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a>
-    <a class="block py-3 nav-link" href="#about" data-i18n="nav.about">About</a>
-    <a class="block py-3 nav-link" href="#contact" data-i18n="nav.contact">Contact</a>
+  <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-400 ease-out backdrop-blur-xl" style="max-height: 0; background: rgba(17, 17, 16, 0.97);">
+    <div class="px-5 pb-6 pt-2 space-y-1">
+      <a class="block py-3 nav-link-anim mobile-nav-item" href="#work" data-i18n="nav.work" style="--i:0">Work</a>
+      <a class="block py-3 nav-link-anim mobile-nav-item" href="#tech" data-i18n="nav.tech" style="--i:1">Tech</a>
+      <a class="block py-3 nav-link-anim mobile-nav-item" href="#hobbies" data-i18n="nav.hobbies" style="--i:2">Hobbies</a>
+      <a class="block py-3 nav-link-anim mobile-nav-item" href="#about" data-i18n="nav.about" style="--i:3">About</a>
+      <a class="block py-3 nav-link-anim mobile-nav-item" href="#contact" data-i18n="nav.contact" style="--i:4">Contact</a>
+    </div>
   </div>
 </nav>
