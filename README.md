@@ -1,62 +1,68 @@
-# LOKOS LEVENTE — Portfolio
+# lokoslevente.com
 
-Personal portfolio site. Street/skate aesthetic, dark theme, neon accents.
+Personal portfolio site built with Astro and Tailwind CSS.
 
-## Stack
+## Tech Stack
 
-Frontend: Astro + Tailwind CSS.
-Backend: Express + SQLite (`server/` folder) for projects API, translations, and contact form.
+- **Astro** — static site generator
+- **Tailwind CSS** — utility-first styling
+- **Lenis** — smooth scroll
+- **Web3Forms** — contact form delivery
+- **Playfair Display + Geist** — typography
 
-## What's in here
+## Project Structure
 
 ```
 src/
-  pages/index.astro     – main page
-  layouts/Base.astro    – base HTML layout
-  components/           – Nav, Hero, Quote, About, TechStack, Hobbies, Projects, Contact, Footer, SnakeGame
-  scripts/main.ts       – i18n, API calls, contact form, gimmicks
-  styles/global.css     – custom styles (cards, stickers, timeline, etc)
-public/
-  favicon.png           – site icon
-  logo.svg              – logo
-  CNAME                 – custom domain config
-server/
-  index.js              – Express API
-  package.json          – backend dependencies
-  data/                 – SQLite DB (auto-created)
-  .env                  – email config (not in git)
+├── components/
+│   ├── Navbar.astro        — fixed nav, hamburger animation, lang toggle
+│   ├── Hero.astro          — split hero with photo
+│   ├── About.astro         — bio with background text effect
+│   ├── Projects.astro      — project cards grid
+│   ├── TechStack.astro     — languages / frameworks / tools
+│   ├── Hobbies.astro       — hobby cards with Lucide SVG icons
+│   ├── Timeline.astro      — career/education timeline
+│   ├── Contact.astro       — contact form (Web3Forms)
+│   └── Footer.astro        — social links, copyright
+├── layouts/
+│   └── Layout.astro        — base HTML layout
+├── pages/
+│   └── index.astro         — page assembly + client scripts
+├── scripts/
+│   └── i18n.ts             — EN/HU translations
+├── styles/
+│   └── global.css          — design tokens, component styles
+└── public/
+    └── hero.png            — hero photo
 ```
 
-## Running locally
+## Features
 
-Frontend:
-```
+- Bilingual (EN/HU) with animated language switch
+- Smooth scroll (Lenis)
+- Scroll-aware navbar with blur backdrop
+- Hamburger-to-X animation on mobile
+- Scroll reveal animations
+- Contact form sends emails via Web3Forms
+- Fully responsive
+
+## Setup
+
+```bash
 npm install
-npm run dev
+npx astro dev
 ```
 
-Backend:
-```
-cd server
-cp .env.example .env
-npm install
-npm run dev
+## Build
+
+```bash
+npx astro build
 ```
 
-## Deploy
+## Contact Form
 
-`npm run build` outputs static files to `dist/`. Push to GitHub Pages.
+Get an access key from [web3forms.com](https://web3forms.com) and replace `YOUR_ACCESS_KEY_HERE` in `src/components/Contact.astro`.
 
-## Easter eggs
+## License
 
-- Triple-click the logo
-- ↑↑↓↓←→←→BA
-
-## TODO
-
-- [x] Add actual projects to the work section
-- [x] Wire up the contact form
-- [x] Add EN/HU language switching
-- [x] Migrate to Astro + Tailwind
-- [ ] Deploy backend somewhere
-- [ ] Project detail pages
+MIT
