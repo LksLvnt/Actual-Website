@@ -15,7 +15,7 @@ Personal portfolio site built with Astro and Tailwind CSS.
 ```
 src/
 ├── components/
-│   ├── Navbar.astro        — fixed nav, hamburger animation, lang toggle
+│   ├── Nav.astro           — fixed nav, hamburger animation, lang toggle
 │   ├── Hero.astro          — split hero with photo
 │   ├── About.astro         — bio with background text effect
 │   ├── Projects.astro      — project cards grid
