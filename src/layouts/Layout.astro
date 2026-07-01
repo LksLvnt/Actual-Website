@@ -19,16 +19,23 @@ const { title } = Astro.props;
     </div>
     <slot />
     <script>
+      const preloaderStart = performance.now();
+      const MIN_PRELOADER_MS = 1100;
+
       function reveal() {
         document.documentElement.classList.add('loaded');
         setTimeout(() => document.getElementById('preloader')?.remove(), 500);
       }
-      if (document.readyState === 'complete') {
-        setTimeout(reveal, 150);
-      } else {
-        window.addEventListener('load', () => setTimeout(reveal, 150));
+      function revealAfterMinimum() {
+        const remaining = MIN_PRELOADER_MS - (performance.now() - preloaderStart);
+        setTimeout(reveal, Math.max(0, remaining));
       }
-      setTimeout(reveal, 1500);
+      if (document.readyState === 'complete') {
+        revealAfterMinimum();
+      } else {
+        window.addEventListener('load', revealAfterMinimum);
+      }
+      setTimeout(reveal, 3000);
     </script>
   </body>
 </html>
