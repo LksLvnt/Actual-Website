@@ -1,22 +1,29 @@
 ---
 ---
-<section class="relative min-h-screen w-full flex items-center overflow-hidden pt-20">
-  <div class="gutter w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-    <div class="md:col-span-7 flex flex-col justify-center py-16 md:py-24">
-      <h1 class="hero-in d1 font-serif text-[clamp(3rem,8vw,7rem)] font-black text-[var(--text)] uppercase leading-[1.05] tracking-[-0.04em] mb-2" data-i18n="hero.line1">Creative</h1>
-      <h1 class="hero-in d2 font-serif text-[clamp(3rem,8vw,7rem)] font-black text-[var(--accent)] uppercase leading-[1.05] tracking-[-0.04em] italic mb-8" data-i18n="hero.line2">Vision</h1>
-      <p class="hero-in d3 font-sans text-base md:text-lg text-[var(--text-muted)] max-w-md leading-relaxed mb-10" data-i18n="hero.subtitle">Engineer by day, creative by nature. Building the future with precision and passion.</p>
-      <div class="hero-in d4">
-        <a class="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--accent)] text-[var(--bg)] font-sans text-xs font-semibold tracking-[0.1em] uppercase rounded-[4px] bloom-shadow transition-all duration-300 hover:bg-[var(--accent-light)]" href="#work">
-          <span data-i18n="hero.cta">View Selected Work</span>
-          <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </a>
-      </div>
+<section class="relative min-h-screen w-full flex items-center overflow-hidden pt-32 pb-20">
+  <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
+    <span class="font-serif font-black uppercase text-[clamp(6rem,20vw,15rem)] text-white/[0.03] tracking-[-0.03em] whitespace-nowrap">Levente Lokos</span>
+  </div>
+  <div class="gutter w-full relative z-10 flex flex-col items-center text-center">
+    <div class="hero-in d1 flex items-center gap-4 md:gap-6 mb-8 md:mb-10 w-full max-w-lg">
+      <span class="h-px flex-1 bg-[var(--accent-dim)]"></span>
+      <p class="font-sans text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-[var(--accent)] shrink-0" data-i18n="hero.role">Full-Stack Developer</p>
+      <span class="h-px flex-1 bg-[var(--accent-dim)]"></span>
     </div>
-    <div class="hero-in d3 md:col-span-5 flex justify-center md:justify-end">
-      <div class="w-full max-w-[260px] sm:max-w-xs md:max-w-sm rounded-xl overflow-hidden border border-white/[0.06]">
-        <img src="/hero.png" alt="Levente Lokos" class="w-full h-auto object-cover" />
-      </div>
+    <div class="hero-in d2 w-full max-w-[200px] sm:max-w-[240px] rounded-xl overflow-hidden border border-white/[0.08] mb-8 md:mb-10 bloom-shadow">
+      <img src="/hero.png" alt="Levente Lokos" class="w-full h-auto object-cover" />
+    </div>
+    <h1 class="hero-in d3 font-serif text-[clamp(2.5rem,8vw,6rem)] font-black text-[var(--text)] leading-[1.05] tracking-[-0.03em] mb-4">Levente Lokos</h1>
+    <p class="hero-in d3 font-serif italic text-[clamp(1.25rem,3.5vw,2rem)] text-[var(--accent)] mb-10 md:mb-12" data-i18n="hero.tagline">Creative Vision</p>
+    <div class="hero-in d4 w-full max-w-xl border-t border-white/10 pt-8 mb-10">
+      <p class="font-sans text-base md:text-lg text-[var(--text-muted)] leading-relaxed mb-3" data-i18n="hero.subtitle">Engineer by day, creative by nature. Building the future with precision and passion.</p>
+      <p class="font-sans text-xs tracking-[0.2em] uppercase text-[var(--text-muted)]/50" data-i18n="hero.location">Pécs, Hungary</p>
+    </div>
+    <div class="hero-in d4">
+      <a class="group inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--accent)] text-[var(--bg)] font-sans text-xs font-semibold tracking-[0.1em] uppercase rounded-[4px] bloom-shadow transition-all duration-300 hover:bg-[var(--accent-light)]" href="#work">
+        <span data-i18n="hero.cta">View Selected Work</span>
+        <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
     </div>
   </div>
   <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--bg)] to-transparent"></div>

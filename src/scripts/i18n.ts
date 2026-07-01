@@ -6,9 +6,10 @@ export const translations: Record<string, Record<string, string>> = {
     "nav.about": "About",
     "nav.contact": "Contact",
 
-    "hero.line1": "Creative",
-    "hero.line2": "Vision",
+    "hero.role": "Full-Stack Developer",
+    "hero.tagline": "Creative Vision",
     "hero.subtitle": "Engineer by day, creative by nature. Building the future with precision and passion.",
+    "hero.location": "Pécs, Hungary",
     "hero.cta": "View Selected Work",
 
     "about.label": "About the Artist",
@@ -71,9 +72,10 @@ export const translations: Record<string, Record<string, string>> = {
     "nav.about": "Rólam",
     "nav.contact": "Kapcsolat",
 
-    "hero.line1": "Kreatív",
-    "hero.line2": "Vízió",
+    "hero.role": "Full-Stack Fejlesztő",
+    "hero.tagline": "Kreatív Vízió",
     "hero.subtitle": "Mérnök nappal, kreatív természetem szerint. A jövőt építem precizitással és szenvedéllyel.",
+    "hero.location": "Pécs, Magyarország",
     "hero.cta": "Munkáim megtekintése",
 
     "about.label": "A Művészről",
