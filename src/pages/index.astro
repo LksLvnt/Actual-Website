@@ -143,10 +143,20 @@ import Footer from '../components/Footer.astro';
     }
 
     const observer = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); },
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            e.target.querySelectorAll('.skill-fill').forEach((bar) => {
+              (bar as HTMLElement).style.width = `${bar.getAttribute('data-level')}%`;
+            });
+            observer.unobserve(e.target);
+          }
+        });
+      },
       { threshold: 0.08, rootMargin: '0px 0px 0px 0px' }
     );
-    document.querySelectorAll('.section-content, .project-card, .hobby-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
+    document.querySelectorAll('.section-content, .project-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
       el.classList.add('reveal');
       (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.025}s`;
       observer.observe(el);
