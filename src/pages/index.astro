@@ -10,7 +10,7 @@ import Timeline from '../components/Timeline.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
-<Layout title="Levente Lokos — Portfolio">
+<Layout title="Levente Lokos | Portfolio">
   <Navbar />
   <Hero />
   <About />
@@ -27,8 +27,8 @@ import Footer from '../components/Footer.astro';
   import { translations } from '../scripts/i18n';
 
   const lenis = new Lenis({
-    duration: 1.4,
-    easing: (t: number) => 1 - Math.pow(1 - t, 4),
+    duration: 0.9,
+    easing: (t: number) => 1 - Math.pow(1 - t, 3),
     smoothWheel: true,
   });
 
@@ -146,11 +146,11 @@ import Footer from '../components/Footer.astro';
 
     const observer = new IntersectionObserver(
       (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px 0px 0px' }
     );
     document.querySelectorAll('.section-content, .project-card, .hobby-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
       el.classList.add('reveal');
-      (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.05}s`;
+      (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.025}s`;
       observer.observe(el);
     });
 

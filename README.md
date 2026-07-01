@@ -4,36 +4,36 @@ Personal portfolio site built with Astro and Tailwind CSS.
 
 ## Tech Stack
 
-- **Astro** — static site generator
-- **Tailwind CSS** — utility-first styling
-- **Lenis** — smooth scroll
-- **Web3Forms** — contact form delivery
-- **Playfair Display + Geist** — typography
+- **Astro** - static site generator
+- **Tailwind CSS** - utility-first styling
+- **Lenis** - smooth scroll
+- **Web3Forms** - contact form delivery
+- **Playfair Display + Geist** - typography
 
 ## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── Nav.astro           — fixed nav, hamburger animation, lang toggle
-│   ├── Hero.astro          — split hero with photo
-│   ├── About.astro         — bio with background text effect
-│   ├── Projects.astro      — project cards grid
-│   ├── TechStack.astro     — languages / frameworks / tools
-│   ├── Hobbies.astro       — hobby cards with Lucide SVG icons
-│   ├── Timeline.astro      — career/education timeline
-│   ├── Contact.astro       — contact form (Web3Forms)
-│   └── Footer.astro        — social links, copyright
+│   ├── Nav.astro           - fixed nav, hamburger animation, lang toggle
+│   ├── Hero.astro          - split hero with photo
+│   ├── About.astro         - bio with background text effect
+│   ├── Projects.astro      - project cards grid
+│   ├── TechStack.astro     - languages / frameworks / tools
+│   ├── Hobbies.astro       - hobby cards with Lucide SVG icons
+│   ├── Timeline.astro      - career/education timeline
+│   ├── Contact.astro       - contact form (Web3Forms)
+│   └── Footer.astro        - social links, copyright
 ├── layouts/
-│   └── Layout.astro        — base HTML layout
+│   └── Layout.astro        - base HTML layout
 ├── pages/
-│   └── index.astro         — page assembly + client scripts
+│   └── index.astro         - page assembly + client scripts
 ├── scripts/
-│   └── i18n.ts             — EN/HU translations
+│   └── i18n.ts             - EN/HU translations
 ├── styles/
-│   └── global.css          — design tokens, component styles
+│   └── global.css          - design tokens, component styles
 └── public/
-    └── hero.png            — hero photo
+    └── hero.png            - hero photo
 ```
 
 ## Features
