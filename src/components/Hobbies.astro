@@ -10,18 +10,20 @@ const hobbies = [
   { key: 'movies', icon: '<rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/>' },
 ];
 ---
-<section class="py-28 md:py-40 px-5 md:px-20 max-w-[1440px] mx-auto" id="hobbies">
-  <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-4" data-i18n="hobbies.label">Beyond Code</p>
-  <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
-    <span data-i18n="hobbies.title1">When I'm</span> <span class="text-[var(--accent)] italic" data-i18n="hobbies.title2">Not Coding</span>
-  </h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-    {hobbies.map((h) => (
-      <div class="hobby-card group">
-        <svg class="hobby-icon w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 md:mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={h.icon}></svg>
-        <h3 class="font-serif text-lg md:text-xl font-semibold text-[var(--text)] mb-1 md:mb-2" data-i18n={`hobbies.${h.key}`}></h3>
-        <p class="font-sans text-xs md:text-sm text-[var(--text-muted)] leading-relaxed" data-i18n={`hobbies.${h.key}.desc`}></p>
-      </div>
-    ))}
+<section id="hobbies">
+  <div class="gutter section-content py-28 md:py-40">
+    <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-4" data-i18n="hobbies.label">Beyond Code</p>
+    <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
+      <span data-i18n="hobbies.title1">When I'm</span> <span class="text-[var(--accent)] italic" data-i18n="hobbies.title2">Not Coding</span>
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-6">
+      {hobbies.map((h) => (
+        <div class="hobby-card group">
+          <svg class="hobby-icon w-8 h-8 md:w-10 md:h-10 mx-auto mb-3 md:mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={h.icon}></svg>
+          <h3 class="font-serif text-lg md:text-xl font-semibold text-[var(--text)] mb-1 md:mb-2" data-i18n={`hobbies.${h.key}`}></h3>
+          <p class="font-sans text-xs md:text-sm text-[var(--text-muted)] leading-relaxed" data-i18n={`hobbies.${h.key}.desc`}></p>
+        </div>
+      ))}
+    </div>
   </div>
 </section>

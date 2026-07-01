@@ -148,7 +148,7 @@ import Footer from '../components/Footer.astro';
       (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); },
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-    document.querySelectorAll('section > div, section > .grid, .project-card, .hobby-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
+    document.querySelectorAll('.section-content, .project-card, .hobby-card, .timeline-item, section h2, section form, .timeline-content').forEach((el, i) => {
       el.classList.add('reveal');
       (el as HTMLElement).style.transitionDelay = `${(i % 10) * 0.05}s`;
       observer.observe(el);
