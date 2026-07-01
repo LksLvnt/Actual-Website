@@ -1,23 +1,74 @@
 ---
 const categories = [
-  { key: 'cat1', items: ['C#', 'C', 'C++', 'Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Assembly', 'HTML/CSS'] },
-  { key: 'cat2', items: ['Angular', 'Astro', 'React', 'Spring Boot', '.NET', 'FastAPI', 'Tailwind CSS', 'Node.js'] },
-  { key: 'cat3', items: ['Git', 'Docker', 'Linux', 'PostgreSQL', 'Supabase', 'Vercel', 'Three.js'] },
+  {
+    key: 'cat1',
+    items: [
+      { name: 'Java', level: 75 },
+      { name: 'Python', level: 70 },
+      { name: 'C#', level: 55 },
+      { name: 'TypeScript', level: 70 },
+    ],
+  },
+  {
+    key: 'cat2',
+    items: [
+      { name: 'Angular', level: 80 },
+      { name: 'React', level: 65 },
+      { name: 'Astro', level: 65 },
+      { name: 'Tailwind CSS', level: 80 },
+    ],
+  },
+  {
+    key: 'cat3',
+    items: [
+      { name: 'Spring Boot', level: 65 },
+      { name: 'FastAPI', level: 60 },
+      { name: '.NET', level: 45 },
+      { name: 'Node.js', level: 55 },
+    ],
+  },
+  {
+    key: 'cat4',
+    items: [
+      { name: 'PostgreSQL', level: 65 },
+      { name: 'MySQL', level: 50 },
+      { name: 'SQLite', level: 55 },
+    ],
+  },
+  {
+    key: 'cat5',
+    items: [
+      { name: 'Docker', level: 45 },
+      { name: 'Linux', level: 60 },
+      { name: 'Cloudflare', level: 40 },
+    ],
+  },
 ];
 ---
-<section class="py-28 md:py-40 px-5 md:px-20 max-w-[1440px] mx-auto" id="tech">
-  <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)]/60 mb-4" data-i18n="tech.label">Toolbox</p>
-  <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
-    <span data-i18n="tech.title1">Tech</span> <span class="text-[var(--accent)] italic" data-i18n="tech.title2">Stack</span>
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-    {categories.map((cat) => (
-      <div>
-        <h3 class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-6" data-i18n={`tech.${cat.key}`}></h3>
-        <div class="flex flex-wrap gap-3">
-          {cat.items.map((item) => <span class="tech-chip">{item}</span>)}
+<section id="tech">
+  <div class="gutter section-content py-28 md:py-40">
+    <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)]/60 mb-4" data-i18n="tech.label">Technical Skills</p>
+    <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
+      <span data-i18n="tech.title1">Technical</span> <span class="text-[var(--accent)] italic" data-i18n="tech.title2">Skills</span>
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-10 gap-y-10">
+      {categories.map((cat) => (
+        <div>
+          <h3 class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-6" data-i18n={`tech.${cat.key}`}></h3>
+          <div class="space-y-4">
+            {cat.items.map((item) => (
+              <div class="skill-row">
+                <div class="flex justify-between items-baseline mb-1.5">
+                  <span class="font-sans text-sm text-[var(--text)]">{item.name}</span>
+                </div>
+                <div class="skill-track">
+                  <span class="skill-fill" data-level={item.level}></span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
