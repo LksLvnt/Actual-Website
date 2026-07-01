@@ -46,12 +46,12 @@ const categories = [
 ];
 ---
 <section id="tech">
-  <div class="gutter section-content py-28 md:py-40">
+  <div class="gutter section-content py-32 md:py-56">
     <p class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)]/60 mb-4" data-i18n="tech.label">Technical Skills</p>
     <h2 class="font-serif text-[clamp(2rem,4vw,4rem)] font-bold text-[var(--text)] mb-12 md:mb-16 leading-[1.2] tracking-[-0.02em]">
       <span data-i18n="tech.title1">Technical</span> <span class="text-[var(--accent)] italic" data-i18n="tech.title2">Skills</span>
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-10 gap-y-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
       {categories.map((cat) => (
         <div>
           <h3 class="font-sans text-xs font-semibold tracking-[0.2em] uppercase text-[var(--highlight)] mb-6" data-i18n={`tech.${cat.key}`}></h3>
